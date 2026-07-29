@@ -1,0 +1,29 @@
+{
+  "app": {
+    "tagline": "Klassenzimmer-Dashboard für Beamer und interaktive Displays",
+    "localProcessing": "Alle Daten bleiben lokal in diesem Browser.",
+    "language": "Sprache"
+  },
+  "dashboard": {
+    "regionLabel": "Dashboard-Arbeitsfläche",
+    "title": "Dashboard",
+    "emptyTitle": "Noch keine Widgets hinzugefügt.",
+    "emptyHint": "Widgets und Layout-Persistenz folgen in Phase 2 und 3."
+  },
+  "footer": {
+    "legalNav": "Rechtliche Hinweise",
+    "help": "Hilfe",
+    "about": "Über",
+    "privacy": "Datenschutz",
+    "imprint": "Impressum",
+    "repositoryAria": "GitHub-Repository (öffnet in neuem Tab)"
+  },
+  "content": {
+    "back": "Zurück zum Dashboard",
+    "notFound": "Seite nicht gefunden. Es wird die Hilfe angezeigt.",
+    "hilfe": "Hilfe",
+    "datenschutz": "Datenschutz",
+    "impressum": "Impressum",
+    "ueber": "Über"
+  }
+}

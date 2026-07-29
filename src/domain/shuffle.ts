@@ -1,0 +1,14 @@
+/**
+ * Unbiased Fisher-Yates shuffle. Returns a new array; the input is not mutated.
+ *
+ * `random` is injectable so the shuffle is deterministic and testable. It must
+ * return a float in [0, 1), like `Math.random`.
+ */
+export function shuffle<T>(items: readonly T[], random: () => number = Math.random): T[] {
+  const result = [...items]
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1))
+    ;[result[i], result[j]] = [result[j], result[i]]
+  }
+  return result
+}

@@ -1,0 +1,29 @@
+{
+  "app": {
+    "tagline": "Tableau de bord de classe pour projecteurs et écrans interactifs",
+    "localProcessing": "Toutes les données restent locales dans ce navigateur.",
+    "language": "Langue"
+  },
+  "dashboard": {
+    "regionLabel": "Espace de travail du tableau de bord",
+    "title": "Tableau de bord",
+    "emptyTitle": "Aucun widget ajouté pour l'instant.",
+    "emptyHint": "Les widgets et la persistance arrivent aux phases 2 et 3."
+  },
+  "footer": {
+    "legalNav": "Informations légales",
+    "help": "Aide",
+    "about": "À propos",
+    "privacy": "Confidentialité",
+    "imprint": "Mentions légales",
+    "repositoryAria": "Dépôt GitHub (ouvre un nouvel onglet)"
+  },
+  "content": {
+    "back": "Retour au tableau de bord",
+    "notFound": "Page introuvable. Affichage de l'aide.",
+    "hilfe": "Aide",
+    "datenschutz": "Confidentialité",
+    "impressum": "Mentions légales",
+    "ueber": "À propos"
+  }
+}

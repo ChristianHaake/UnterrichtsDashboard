@@ -1,0 +1,29 @@
+{
+  "app": {
+    "tagline": "Panel de aula para proyectores y pantallas interactivas",
+    "localProcessing": "Todos los datos permanecen locales en este navegador.",
+    "language": "Idioma"
+  },
+  "dashboard": {
+    "regionLabel": "Espacio de trabajo del panel",
+    "title": "Panel",
+    "emptyTitle": "Aún no se han añadido widgets.",
+    "emptyHint": "Los widgets y la persistencia llegan en las fases 2 y 3."
+  },
+  "footer": {
+    "legalNav": "Información legal",
+    "help": "Ayuda",
+    "about": "Acerca de",
+    "privacy": "Privacidad",
+    "imprint": "Aviso legal",
+    "repositoryAria": "Repositorio de GitHub (abre en una pestaña nueva)"
+  },
+  "content": {
+    "back": "Volver al panel",
+    "notFound": "Página no encontrada. Mostrando la ayuda.",
+    "hilfe": "Ayuda",
+    "datenschutz": "Privacidad",
+    "impressum": "Aviso legal",
+    "ueber": "Acerca de"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "app": {
+    "tagline": "Classroom dashboard for projectors and interactive displays",
+    "localProcessing": "All data stays local in this browser.",
+    "language": "Language"
+  },
+  "dashboard": {
+    "regionLabel": "Dashboard workspace",
+    "title": "Dashboard",
+    "emptyTitle": "No widgets added yet.",
+    "emptyHint": "Widgets and layout persistence arrive in phases 2 and 3."
+  },
+  "footer": {
+    "legalNav": "Legal information",
+    "help": "Help",
+    "about": "About",
+    "privacy": "Privacy",
+    "imprint": "Imprint",
+    "repositoryAria": "GitHub repository (opens in a new tab)"
+  },
+  "content": {
+    "back": "Back to the dashboard",
+    "notFound": "Page not found. Showing help instead.",
+    "hilfe": "Help",
+    "datenschutz": "Privacy",
+    "impressum": "Imprint",
+    "ueber": "About"
+  }
+}

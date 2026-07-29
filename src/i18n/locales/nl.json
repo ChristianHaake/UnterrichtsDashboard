@@ -1,0 +1,29 @@
+{
+  "app": {
+    "tagline": "Klasdashboard voor beamers en interactieve schermen",
+    "localProcessing": "Alle gegevens blijven lokaal in deze browser.",
+    "language": "Taal"
+  },
+  "dashboard": {
+    "regionLabel": "Dashboard-werkruimte",
+    "title": "Dashboard",
+    "emptyTitle": "Nog geen widgets toegevoegd.",
+    "emptyHint": "Widgets en lay-outpersistentie volgen in fase 2 en 3."
+  },
+  "footer": {
+    "legalNav": "Juridische informatie",
+    "help": "Help",
+    "about": "Over",
+    "privacy": "Privacy",
+    "imprint": "Colofon",
+    "repositoryAria": "GitHub-repository (opent in een nieuw tabblad)"
+  },
+  "content": {
+    "back": "Terug naar het dashboard",
+    "notFound": "Pagina niet gevonden. Help wordt weergegeven.",
+    "hilfe": "Help",
+    "datenschutz": "Privacy",
+    "impressum": "Colofon",
+    "ueber": "Over"
+  }
+}
