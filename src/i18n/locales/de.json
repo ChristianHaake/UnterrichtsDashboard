@@ -8,7 +8,56 @@
     "regionLabel": "Dashboard-Arbeitsfläche",
     "title": "Dashboard",
     "emptyTitle": "Noch keine Widgets hinzugefügt.",
-    "emptyHint": "Widgets und Layout-Persistenz folgen in Phase 2 und 3."
+    "emptyHint": "Füge oben ein Widget hinzu, um zu beginnen."
+  },
+  "widgets": {
+    "toolbarLabel": "Widget hinzufügen",
+    "add": "{{name}} hinzufügen",
+    "kinds": {
+      "timer": "Timer",
+      "symbols": "Arbeitssymbole",
+      "phases": "Unterrichtsphasen",
+      "text": "Textfeld"
+    }
+  },
+  "widget": {
+    "moveGroup": "{{title}} verschieben",
+    "moveLeft": "{{title}} nach links verschieben",
+    "moveRight": "{{title}} nach rechts verschieben",
+    "moveUp": "{{title}} nach oben verschieben",
+    "moveDown": "{{title}} nach unten verschieben",
+    "remove": "{{title}} entfernen"
+  },
+  "timer": {
+    "adjust": "Dauer anpassen",
+    "minusMinute": "Eine Minute abziehen",
+    "plusMinute": "Eine Minute hinzufügen",
+    "start": "Start",
+    "pause": "Pause",
+    "reset": "Zurücksetzen",
+    "done": "Zeit abgelaufen."
+  },
+  "symbols": {
+    "groupLabel": "Sozialform auswählen",
+    "silent": "Stillarbeit",
+    "whisper": "Flüstern",
+    "partner": "Partnerarbeit",
+    "group": "Gruppenarbeit"
+  },
+  "phases": {
+    "default1": "Einstieg",
+    "default2": "Erarbeitung",
+    "default3": "Sicherung",
+    "empty": "Noch keine Phasen angelegt.",
+    "activeLabel": "aktive Phase",
+    "remove": "Phase „{{name}}“ entfernen",
+    "newLabel": "Neue Phase",
+    "placeholder": "Phasenname",
+    "add": "Hinzufügen"
+  },
+  "text": {
+    "label": "Textinhalt",
+    "placeholder": "Text eingeben …"
   },
   "footer": {
     "legalNav": "Rechtliche Hinweise",

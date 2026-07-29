@@ -8,7 +8,56 @@
     "regionLabel": "Espacio de trabajo del panel",
     "title": "Panel",
     "emptyTitle": "Aún no se han añadido widgets.",
-    "emptyHint": "Los widgets y la persistencia llegan en las fases 2 y 3."
+    "emptyHint": "Añade un widget arriba para empezar."
+  },
+  "widgets": {
+    "toolbarLabel": "Añadir un widget",
+    "add": "Añadir {{name}}",
+    "kinds": {
+      "timer": "Temporizador",
+      "symbols": "Símbolos de trabajo",
+      "phases": "Fases de la clase",
+      "text": "Campo de texto"
+    }
+  },
+  "widget": {
+    "moveGroup": "Mover {{title}}",
+    "moveLeft": "Mover {{title}} a la izquierda",
+    "moveRight": "Mover {{title}} a la derecha",
+    "moveUp": "Mover {{title}} hacia arriba",
+    "moveDown": "Mover {{title}} hacia abajo",
+    "remove": "Quitar {{title}}"
+  },
+  "timer": {
+    "adjust": "Ajustar la duración",
+    "minusMinute": "Restar un minuto",
+    "plusMinute": "Añadir un minuto",
+    "start": "Iniciar",
+    "pause": "Pausar",
+    "reset": "Restablecer",
+    "done": "Se acabó el tiempo."
+  },
+  "symbols": {
+    "groupLabel": "Elegir una forma social",
+    "silent": "Trabajo individual",
+    "whisper": "Susurrar",
+    "partner": "Trabajo en parejas",
+    "group": "Trabajo en grupo"
+  },
+  "phases": {
+    "default1": "Introducción",
+    "default2": "Elaboración",
+    "default3": "Consolidación",
+    "empty": "Aún no se han creado fases.",
+    "activeLabel": "fase activa",
+    "remove": "Quitar la fase «{{name}}»",
+    "newLabel": "Nueva fase",
+    "placeholder": "Nombre de la fase",
+    "add": "Añadir"
+  },
+  "text": {
+    "label": "Contenido de texto",
+    "placeholder": "Escribe un texto …"
   },
   "footer": {
     "legalNav": "Información legal",

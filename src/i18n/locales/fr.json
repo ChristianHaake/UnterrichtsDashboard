@@ -8,7 +8,56 @@
     "regionLabel": "Espace de travail du tableau de bord",
     "title": "Tableau de bord",
     "emptyTitle": "Aucun widget ajouté pour l'instant.",
-    "emptyHint": "Les widgets et la persistance arrivent aux phases 2 et 3."
+    "emptyHint": "Ajoutez un widget ci-dessus pour commencer."
+  },
+  "widgets": {
+    "toolbarLabel": "Ajouter un widget",
+    "add": "Ajouter {{name}}",
+    "kinds": {
+      "timer": "Minuteur",
+      "symbols": "Symboles de travail",
+      "phases": "Phases du cours",
+      "text": "Champ de texte"
+    }
+  },
+  "widget": {
+    "moveGroup": "Déplacer {{title}}",
+    "moveLeft": "Déplacer {{title}} vers la gauche",
+    "moveRight": "Déplacer {{title}} vers la droite",
+    "moveUp": "Déplacer {{title}} vers le haut",
+    "moveDown": "Déplacer {{title}} vers le bas",
+    "remove": "Supprimer {{title}}"
+  },
+  "timer": {
+    "adjust": "Ajuster la durée",
+    "minusMinute": "Retirer une minute",
+    "plusMinute": "Ajouter une minute",
+    "start": "Démarrer",
+    "pause": "Pause",
+    "reset": "Réinitialiser",
+    "done": "Le temps est écoulé."
+  },
+  "symbols": {
+    "groupLabel": "Choisir une forme sociale",
+    "silent": "Travail silencieux",
+    "whisper": "Chuchoter",
+    "partner": "Travail en binôme",
+    "group": "Travail de groupe"
+  },
+  "phases": {
+    "default1": "Introduction",
+    "default2": "Élaboration",
+    "default3": "Consolidation",
+    "empty": "Aucune phase créée pour l'instant.",
+    "activeLabel": "phase active",
+    "remove": "Supprimer la phase « {{name}} »",
+    "newLabel": "Nouvelle phase",
+    "placeholder": "Nom de la phase",
+    "add": "Ajouter"
+  },
+  "text": {
+    "label": "Contenu du texte",
+    "placeholder": "Saisir du texte …"
   },
   "footer": {
     "legalNav": "Informations légales",

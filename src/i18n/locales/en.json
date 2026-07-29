@@ -8,7 +8,56 @@
     "regionLabel": "Dashboard workspace",
     "title": "Dashboard",
     "emptyTitle": "No widgets added yet.",
-    "emptyHint": "Widgets and layout persistence arrive in phases 2 and 3."
+    "emptyHint": "Add a widget above to get started."
+  },
+  "widgets": {
+    "toolbarLabel": "Add a widget",
+    "add": "Add {{name}}",
+    "kinds": {
+      "timer": "Timer",
+      "symbols": "Work symbols",
+      "phases": "Lesson phases",
+      "text": "Text field"
+    }
+  },
+  "widget": {
+    "moveGroup": "Move {{title}}",
+    "moveLeft": "Move {{title}} left",
+    "moveRight": "Move {{title}} right",
+    "moveUp": "Move {{title}} up",
+    "moveDown": "Move {{title}} down",
+    "remove": "Remove {{title}}"
+  },
+  "timer": {
+    "adjust": "Adjust duration",
+    "minusMinute": "Subtract one minute",
+    "plusMinute": "Add one minute",
+    "start": "Start",
+    "pause": "Pause",
+    "reset": "Reset",
+    "done": "Time is up."
+  },
+  "symbols": {
+    "groupLabel": "Choose a social form",
+    "silent": "Silent work",
+    "whisper": "Whisper",
+    "partner": "Partner work",
+    "group": "Group work"
+  },
+  "phases": {
+    "default1": "Introduction",
+    "default2": "Elaboration",
+    "default3": "Consolidation",
+    "empty": "No phases created yet.",
+    "activeLabel": "active phase",
+    "remove": "Remove phase \"{{name}}\"",
+    "newLabel": "New phase",
+    "placeholder": "Phase name",
+    "add": "Add"
+  },
+  "text": {
+    "label": "Text content",
+    "placeholder": "Enter text …"
   },
   "footer": {
     "legalNav": "Legal information",

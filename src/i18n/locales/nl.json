@@ -8,7 +8,56 @@
     "regionLabel": "Dashboard-werkruimte",
     "title": "Dashboard",
     "emptyTitle": "Nog geen widgets toegevoegd.",
-    "emptyHint": "Widgets en lay-outpersistentie volgen in fase 2 en 3."
+    "emptyHint": "Voeg hierboven een widget toe om te beginnen."
+  },
+  "widgets": {
+    "toolbarLabel": "Widget toevoegen",
+    "add": "{{name}} toevoegen",
+    "kinds": {
+      "timer": "Timer",
+      "symbols": "Werksymbolen",
+      "phases": "Lesfasen",
+      "text": "Tekstveld"
+    }
+  },
+  "widget": {
+    "moveGroup": "{{title}} verplaatsen",
+    "moveLeft": "{{title}} naar links verplaatsen",
+    "moveRight": "{{title}} naar rechts verplaatsen",
+    "moveUp": "{{title}} naar boven verplaatsen",
+    "moveDown": "{{title}} naar beneden verplaatsen",
+    "remove": "{{title}} verwijderen"
+  },
+  "timer": {
+    "adjust": "Duur aanpassen",
+    "minusMinute": "Eén minuut aftrekken",
+    "plusMinute": "Eén minuut toevoegen",
+    "start": "Start",
+    "pause": "Pauze",
+    "reset": "Opnieuw",
+    "done": "De tijd is om."
+  },
+  "symbols": {
+    "groupLabel": "Kies een werkvorm",
+    "silent": "Stilwerken",
+    "whisper": "Fluisteren",
+    "partner": "Duowerk",
+    "group": "Groepswerk"
+  },
+  "phases": {
+    "default1": "Introductie",
+    "default2": "Verwerking",
+    "default3": "Afronding",
+    "empty": "Nog geen fasen aangemaakt.",
+    "activeLabel": "actieve fase",
+    "remove": "Fase \"{{name}}\" verwijderen",
+    "newLabel": "Nieuwe fase",
+    "placeholder": "Naam van de fase",
+    "add": "Toevoegen"
+  },
+  "text": {
+    "label": "Tekstinhoud",
+    "placeholder": "Tekst invoeren …"
   },
   "footer": {
     "legalNav": "Juridische informatie",
