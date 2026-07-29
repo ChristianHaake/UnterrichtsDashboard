@@ -20,12 +20,20 @@ export interface PhasesPersist {
   phases: PhaseEntry[]
   activeId: string | null
 }
+export interface QrPersist {
+  value: string
+}
+export interface RandomizerPersist {
+  names: string[]
+}
 
 export interface WidgetStateMap {
   timer: TimerPersist
   text: TextPersist
   symbols: SymbolsPersist
   phases: PhasesPersist
+  qr: QrPersist
+  randomizer: RandomizerPersist
 }
 
 interface WidgetStateSpec<S> {
@@ -85,6 +93,25 @@ export const WIDGET_STATE: { [K in WidgetKind]: WidgetStateSpec<WidgetStateMap[K
       if (activeId !== null && typeof activeId !== 'string') return undefined
       const activeExists = activeId === null || parsed.some((p) => p.id === activeId)
       return { phases: parsed, activeId: activeExists ? (activeId as string | null) : null }
+    },
+  },
+  qr: {
+    default: { value: '' },
+    parse(input) {
+      if (!isRecord(input)) return undefined
+      if (typeof input.value !== 'string') return undefined
+      return { value: input.value }
+    },
+  },
+  randomizer: {
+    default: { names: [] },
+    parse(input) {
+      if (!isRecord(input)) return undefined
+      const { names } = input
+      if (!Array.isArray(names) || names.some((name) => typeof name !== 'string')) {
+        return undefined
+      }
+      return { names: names as string[] }
     },
   },
 }

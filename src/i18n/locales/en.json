@@ -17,8 +17,27 @@
       "timer": "Timer",
       "symbols": "Work symbols",
       "phases": "Lesson phases",
-      "text": "Text field"
+      "text": "Text field",
+      "qr": "QR code",
+      "randomizer": "Randomizer"
     }
+  },
+  "qr": {
+    "label": "Link or text",
+    "placeholder": "https://…",
+    "imageLabel": "QR code for {{value}}",
+    "empty": "Enter a link or text to generate a QR code.",
+    "error": "Content too long for a QR code."
+  },
+  "randomizer": {
+    "newLabel": "Add a name",
+    "placeholder": "Name",
+    "add": "Add",
+    "remove": "Remove \"{{name}}\"",
+    "pick": "Pick at random",
+    "groupSize": "Group size",
+    "formGroups": "Form groups",
+    "group": "Group {{number}}"
   },
   "project": {
     "groupLabel": "Project actions",

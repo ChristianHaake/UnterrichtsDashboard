@@ -17,6 +17,8 @@ export const WIDGET_REGISTRY: Record<WidgetKind, WidgetDefinition> = {
   symbols: { labelKey: 'widgets.kinds.symbols', size: { w: 3, h: 6, minW: 2, minH: 4 } },
   phases: { labelKey: 'widgets.kinds.phases', size: { w: 4, h: 6, minW: 3, minH: 4 } },
   text: { labelKey: 'widgets.kinds.text', size: { w: 4, h: 4, minW: 2, minH: 3 } },
+  qr: { labelKey: 'widgets.kinds.qr', size: { w: 3, h: 6, minW: 2, minH: 5 } },
+  randomizer: { labelKey: 'widgets.kinds.randomizer', size: { w: 4, h: 7, minW: 3, minH: 5 } },
 }
 
 export const GRID_COLS = 12

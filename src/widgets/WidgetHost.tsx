@@ -4,6 +4,8 @@ import { TimerWidget } from './timer/TimerWidget'
 import { SymbolsWidget } from './symbols/SymbolsWidget'
 import { PhasesWidget } from './phases/PhasesWidget'
 import { TextWidget } from './text/TextWidget'
+import { QrWidget } from './qr/QrWidget'
+import { RandomizerWidget } from './randomizer/RandomizerWidget'
 
 interface WidgetHostProps {
   kind: WidgetKind
@@ -22,5 +24,9 @@ export function WidgetHost({ kind, state, onChange }: WidgetHostProps) {
       return <PhasesWidget state={state as WidgetStateMap['phases']} onChange={onChange} />
     case 'text':
       return <TextWidget state={state as WidgetStateMap['text']} onChange={onChange} />
+    case 'qr':
+      return <QrWidget state={state as WidgetStateMap['qr']} onChange={onChange} />
+    case 'randomizer':
+      return <RandomizerWidget state={state as WidgetStateMap['randomizer']} onChange={onChange} />
   }
 }

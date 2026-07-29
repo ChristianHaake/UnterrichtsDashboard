@@ -17,8 +17,27 @@
       "timer": "Temporizador",
       "symbols": "Símbolos de trabajo",
       "phases": "Fases de la clase",
-      "text": "Campo de texto"
+      "text": "Campo de texto",
+      "qr": "Código QR",
+      "randomizer": "Aleatorizador"
     }
+  },
+  "qr": {
+    "label": "Enlace o texto",
+    "placeholder": "https://…",
+    "imageLabel": "Código QR para {{value}}",
+    "empty": "Introduce un enlace o texto para generar un código QR.",
+    "error": "Contenido demasiado largo para un código QR."
+  },
+  "randomizer": {
+    "newLabel": "Añadir un nombre",
+    "placeholder": "Nombre",
+    "add": "Añadir",
+    "remove": "Quitar «{{name}}»",
+    "pick": "Elegir al azar",
+    "groupSize": "Tamaño del grupo",
+    "formGroups": "Formar grupos",
+    "group": "Grupo {{number}}"
   },
   "project": {
     "groupLabel": "Acciones del proyecto",

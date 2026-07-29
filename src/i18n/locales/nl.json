@@ -17,8 +17,27 @@
       "timer": "Timer",
       "symbols": "Werksymbolen",
       "phases": "Lesfasen",
-      "text": "Tekstveld"
+      "text": "Tekstveld",
+      "qr": "QR-code",
+      "randomizer": "Willekeurige keuze"
     }
+  },
+  "qr": {
+    "label": "Link of tekst",
+    "placeholder": "https://…",
+    "imageLabel": "QR-code voor {{value}}",
+    "empty": "Voer een link of tekst in om een QR-code te maken.",
+    "error": "Inhoud te lang voor een QR-code."
+  },
+  "randomizer": {
+    "newLabel": "Naam toevoegen",
+    "placeholder": "Naam",
+    "add": "Toevoegen",
+    "remove": "\"{{name}}\" verwijderen",
+    "pick": "Willekeurig kiezen",
+    "groupSize": "Groepsgrootte",
+    "formGroups": "Groepen maken",
+    "group": "Groep {{number}}"
   },
   "project": {
     "groupLabel": "Projectacties",

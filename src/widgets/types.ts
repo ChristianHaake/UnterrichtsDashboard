@@ -1,6 +1,13 @@
-export type WidgetKind = 'timer' | 'symbols' | 'phases' | 'text'
+export type WidgetKind = 'timer' | 'symbols' | 'phases' | 'text' | 'qr' | 'randomizer'
 
-export const WIDGET_KINDS: readonly WidgetKind[] = ['timer', 'symbols', 'phases', 'text']
+export const WIDGET_KINDS: readonly WidgetKind[] = [
+  'timer',
+  'symbols',
+  'phases',
+  'text',
+  'qr',
+  'randomizer',
+]
 
 export interface WidgetInstance {
   id: string

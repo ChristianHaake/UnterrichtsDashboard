@@ -17,8 +17,27 @@
       "timer": "Minuteur",
       "symbols": "Symboles de travail",
       "phases": "Phases du cours",
-      "text": "Champ de texte"
+      "text": "Champ de texte",
+      "qr": "Code QR",
+      "randomizer": "Tirage au sort"
     }
+  },
+  "qr": {
+    "label": "Lien ou texte",
+    "placeholder": "https://…",
+    "imageLabel": "Code QR pour {{value}}",
+    "empty": "Saisissez un lien ou un texte pour générer un code QR.",
+    "error": "Contenu trop long pour un code QR."
+  },
+  "randomizer": {
+    "newLabel": "Ajouter un nom",
+    "placeholder": "Nom",
+    "add": "Ajouter",
+    "remove": "Supprimer « {{name}} »",
+    "pick": "Tirer au sort",
+    "groupSize": "Taille des groupes",
+    "formGroups": "Former des groupes",
+    "group": "Groupe {{number}}"
   },
   "project": {
     "groupLabel": "Actions du projet",
