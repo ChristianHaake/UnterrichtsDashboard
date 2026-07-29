@@ -20,6 +20,15 @@
       "text": "Text field"
     }
   },
+  "project": {
+    "groupLabel": "Project actions",
+    "export": "Export layout",
+    "import": "Import layout",
+    "reset": "Reset",
+    "importError": "Import failed: {{reason}}",
+    "confirmReplace": "Replace the current dashboard with the imported file?",
+    "confirmReset": "Clear the dashboard and delete all locally stored data?"
+  },
   "widget": {
     "moveGroup": "Move {{title}}",
     "moveLeft": "Move {{title}} left",

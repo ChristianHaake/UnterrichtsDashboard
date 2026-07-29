@@ -20,6 +20,15 @@
       "text": "Tekstveld"
     }
   },
+  "project": {
+    "groupLabel": "Projectacties",
+    "export": "Lay-out exporteren",
+    "import": "Lay-out importeren",
+    "reset": "Opnieuw instellen",
+    "importError": "Import mislukt: {{reason}}",
+    "confirmReplace": "Het huidige dashboard vervangen door het geïmporteerde bestand?",
+    "confirmReset": "Het dashboard leegmaken en alle lokaal opgeslagen gegevens verwijderen?"
+  },
   "widget": {
     "moveGroup": "{{title}} verplaatsen",
     "moveLeft": "{{title}} naar links verplaatsen",

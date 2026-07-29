@@ -20,6 +20,15 @@
       "text": "Campo de texto"
     }
   },
+  "project": {
+    "groupLabel": "Acciones del proyecto",
+    "export": "Exportar diseño",
+    "import": "Importar diseño",
+    "reset": "Restablecer",
+    "importError": "Error de importación: {{reason}}",
+    "confirmReplace": "¿Reemplazar el panel actual con el archivo importado?",
+    "confirmReset": "¿Vaciar el panel y eliminar todos los datos guardados localmente?"
+  },
   "widget": {
     "moveGroup": "Mover {{title}}",
     "moveLeft": "Mover {{title}} a la izquierda",

@@ -20,6 +20,15 @@
       "text": "Textfeld"
     }
   },
+  "project": {
+    "groupLabel": "Projektaktionen",
+    "export": "Layout exportieren",
+    "import": "Layout importieren",
+    "reset": "Zurücksetzen",
+    "importError": "Import fehlgeschlagen: {{reason}}",
+    "confirmReplace": "Aktuelles Dashboard durch die importierte Datei ersetzen?",
+    "confirmReset": "Dashboard leeren und alle lokal gespeicherten Daten löschen?"
+  },
   "widget": {
     "moveGroup": "{{title}} verschieben",
     "moveLeft": "{{title}} nach links verschieben",

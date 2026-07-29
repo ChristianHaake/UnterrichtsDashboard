@@ -1,9 +1,14 @@
-import { useId, useState } from 'react'
+import { useId } from 'react'
 import { useTranslation } from 'react-i18next'
+import type { TextPersist } from '../state'
 
-export function TextWidget() {
+interface TextWidgetProps {
+  state: TextPersist
+  onChange: (next: TextPersist) => void
+}
+
+export function TextWidget({ state, onChange }: TextWidgetProps) {
   const { t } = useTranslation()
-  const [value, setValue] = useState('')
   const labelId = useId()
 
   return (
@@ -14,9 +19,9 @@ export function TextWidget() {
       <textarea
         id={labelId}
         className="text-widget__area"
-        value={value}
+        value={state.value}
         placeholder={t('text.placeholder')}
-        onChange={(event) => setValue(event.target.value)}
+        onChange={(event) => onChange({ value: event.target.value })}
         rows={4}
       />
     </div>

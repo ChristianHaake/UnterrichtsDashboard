@@ -1,36 +1,38 @@
-import { useRef, useState, type FormEvent } from 'react'
+import { useId, useRef, useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
+import type { PhasesPersist } from '../state'
 
-interface Phase {
-  id: string
-  name: string
+interface PhasesWidgetProps {
+  state: PhasesPersist
+  onChange: (next: PhasesPersist) => void
 }
 
-export function PhasesWidget() {
+export function PhasesWidget({ state, onChange }: PhasesWidgetProps) {
   const { t } = useTranslation()
+  const idPrefix = useId()
   const counter = useRef(0)
-  const nextId = () => `phase-${counter.current++}`
-
-  const [phases, setPhases] = useState<Phase[]>(() =>
-    [t('phases.default1'), t('phases.default2'), t('phases.default3')].map((name) => ({
-      id: nextId(),
-      name,
-    })),
-  )
-  const [activeId, setActiveId] = useState<string | null>(() => null)
   const [draft, setDraft] = useState('')
+
+  const { phases, activeId } = state
 
   function addPhase(event: FormEvent) {
     event.preventDefault()
     const name = draft.trim()
     if (!name) return
-    setPhases((current) => [...current, { id: nextId(), name }])
+    const id = `${idPrefix}-${counter.current++}`
+    onChange({ phases: [...phases, { id, name }], activeId })
     setDraft('')
   }
 
   function removePhase(id: string) {
-    setPhases((current) => current.filter((phase) => phase.id !== id))
-    setActiveId((current) => (current === id ? null : current))
+    onChange({
+      phases: phases.filter((phase) => phase.id !== id),
+      activeId: activeId === id ? null : activeId,
+    })
+  }
+
+  function activate(id: string) {
+    onChange({ phases, activeId: id })
   }
 
   return (
@@ -47,7 +49,7 @@ export function PhasesWidget() {
                   type="button"
                   className="phases__activate"
                   aria-pressed={isActive}
-                  onClick={() => setActiveId(phase.id)}
+                  onClick={() => activate(phase.id)}
                 >
                   {isActive && (
                     <span className="phases__marker" aria-hidden="true">
@@ -72,12 +74,12 @@ export function PhasesWidget() {
       )}
 
       <form className="phases__add" onSubmit={addPhase}>
-        <label className="phases__add-label" htmlFor="phase-draft">
+        <label className="phases__add-label" htmlFor={`${idPrefix}-draft`}>
           {t('phases.newLabel')}
         </label>
         <div className="phases__add-row">
           <input
-            id="phase-draft"
+            id={`${idPrefix}-draft`}
             type="text"
             value={draft}
             placeholder={t('phases.placeholder')}

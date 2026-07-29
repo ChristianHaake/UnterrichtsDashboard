@@ -27,6 +27,7 @@
     "smoke:production": "node scripts/smoke-production.mjs"
   },
   "dependencies": {
+    "dexie": "^4.0.10",
     "i18next": "^25.0.0",
     "markdown-it": "^14.1.0",
     "react": "^19.1.0",

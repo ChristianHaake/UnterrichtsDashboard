@@ -1,7 +1,6 @@
-import { useState, type ReactElement } from 'react'
+import { type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
-
-type SocialForm = 'silent' | 'whisper' | 'partner' | 'group'
+import type { SocialForm, SymbolsPersist } from '../state'
 
 const FORMS: { id: SocialForm; icon: ReactElement }[] = [
   {
@@ -48,9 +47,14 @@ const FORMS: { id: SocialForm; icon: ReactElement }[] = [
   },
 ]
 
-export function SymbolsWidget() {
+interface SymbolsWidgetProps {
+  state: SymbolsPersist
+  onChange: (next: SymbolsPersist) => void
+}
+
+export function SymbolsWidget({ state, onChange }: SymbolsWidgetProps) {
   const { t } = useTranslation()
-  const [active, setActive] = useState<SocialForm>('silent')
+  const active = state.active
 
   return (
     <div className="symbols">
@@ -64,7 +68,7 @@ export function SymbolsWidget() {
             type="button"
             className={`symbols__item${active === id ? ' symbols__item--active' : ''}`}
             aria-pressed={active === id}
-            onClick={() => setActive(id)}
+            onClick={() => onChange({ active: id })}
           >
             <span className="symbols__icon">{icon}</span>
             <span className="symbols__label">{t(`symbols.${id}`)}</span>

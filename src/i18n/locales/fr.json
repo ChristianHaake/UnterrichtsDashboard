@@ -20,6 +20,15 @@
       "text": "Champ de texte"
     }
   },
+  "project": {
+    "groupLabel": "Actions du projet",
+    "export": "Exporter la disposition",
+    "import": "Importer la disposition",
+    "reset": "Réinitialiser",
+    "importError": "Échec de l'import : {{reason}}",
+    "confirmReplace": "Remplacer le tableau de bord actuel par le fichier importé ?",
+    "confirmReset": "Vider le tableau de bord et supprimer toutes les données locales ?"
+  },
   "widget": {
     "moveGroup": "Déplacer {{title}}",
     "moveLeft": "Déplacer {{title}} vers la gauche",
