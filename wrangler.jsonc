@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "UnterrichtsDashboard",
+  "name": "unterrichtsdashboard",
   "compatibility_date": "2026-06-25",
   "assets": {
     "directory": "./dist",
