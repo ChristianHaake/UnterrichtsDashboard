@@ -13,14 +13,54 @@
   "widgets": {
     "toolbarLabel": "Widget toevoegen",
     "add": "{{name}} toevoegen",
+    "loading": "Laden …",
     "kinds": {
       "timer": "Timer",
       "symbols": "Werksymbolen",
       "phases": "Lesfasen",
       "text": "Tekstveld",
       "qr": "QR-code",
-      "randomizer": "Willekeurige keuze"
+      "randomizer": "Willekeurige keuze",
+      "scoreboard": "Scorebord",
+      "hallpass": "Gangpas",
+      "seating": "Klasplattegrond",
+      "morningboard": "Ochtendbord"
     }
+  },
+  "morningboard": {
+    "weatherLabel": "Weer",
+    "locationLabel": "Locatie",
+    "searchPlaceholder": "Zoek een stad …",
+    "search": "Zoeken",
+    "refresh": "Vernieuwen",
+    "loading": "Laden …",
+    "unavailable": "Weer niet beschikbaar.",
+    "offlineCached": "Offline – laatst bekende waarde.",
+    "notFound": "Locatie niet gevonden.",
+    "wordLabel": "Woord van de dag",
+    "wordPlaceholder": "Voer het woord van de dag in …",
+    "conditions": {
+      "clear": "Helder",
+      "cloudy": "Bewolkt",
+      "fog": "Mist",
+      "rain": "Regen",
+      "snow": "Sneeuw",
+      "thunder": "Onweer",
+      "unknown": "Onbekend"
+    }
+  },
+  "seating": {
+    "sizeLabel": "Rastergrootte",
+    "rows": "Rijen",
+    "cols": "Kolommen",
+    "newLabel": "Naam toevoegen",
+    "placeholder": "Naam",
+    "add": "Toevoegen",
+    "poolLabel": "Namen — selecteer er een om te plaatsen",
+    "remove": "\"{{name}}\" verwijderen",
+    "gridLabel": "Klasplattegrond",
+    "seat": "Plaats {{number}}: {{name}}",
+    "free": "vrij"
   },
   "qr": {
     "label": "Link of tekst",
@@ -86,6 +126,28 @@
   "text": {
     "label": "Tekstinhoud",
     "placeholder": "Tekst invoeren …"
+  },
+  "scoreboard": {
+    "newLabel": "Naam of groep toevoegen",
+    "placeholder": "Naam",
+    "add": "Toevoegen",
+    "remove": "\"{{name}}\" verwijderen",
+    "plus": "Punt voor {{name}}",
+    "minus": "Punt aftrekken van {{name}}",
+    "reset": "Punten resetten",
+    "empty": "Nog geen items."
+  },
+  "hallpass": {
+    "newLabel": "Naam toevoegen",
+    "placeholder": "Naam",
+    "add": "Toevoegen",
+    "remove": "\"{{name}}\" verwijderen",
+    "out": "{{name}} naar buiten sturen",
+    "back": "{{name}} is terug",
+    "outShort": "Weg",
+    "backShort": "Terug",
+    "outLabel": "weg sinds:",
+    "empty": "Nog geen namen."
   },
   "footer": {
     "legalNav": "Juridische informatie",

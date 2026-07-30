@@ -13,14 +13,54 @@
   "widgets": {
     "toolbarLabel": "Ajouter un widget",
     "add": "Ajouter {{name}}",
+    "loading": "Chargement …",
     "kinds": {
       "timer": "Minuteur",
       "symbols": "Symboles de travail",
       "phases": "Phases du cours",
       "text": "Champ de texte",
       "qr": "Code QR",
-      "randomizer": "Tirage au sort"
+      "randomizer": "Tirage au sort",
+      "scoreboard": "Tableau de points",
+      "hallpass": "Laissez-passer",
+      "seating": "Plan de classe",
+      "morningboard": "Tableau du matin"
     }
+  },
+  "morningboard": {
+    "weatherLabel": "Météo",
+    "locationLabel": "Lieu",
+    "searchPlaceholder": "Rechercher une ville …",
+    "search": "Rechercher",
+    "refresh": "Actualiser",
+    "loading": "Chargement …",
+    "unavailable": "Météo indisponible.",
+    "offlineCached": "Hors ligne – dernière valeur connue.",
+    "notFound": "Lieu introuvable.",
+    "wordLabel": "Mot du jour",
+    "wordPlaceholder": "Saisir le mot du jour …",
+    "conditions": {
+      "clear": "Dégagé",
+      "cloudy": "Nuageux",
+      "fog": "Brouillard",
+      "rain": "Pluie",
+      "snow": "Neige",
+      "thunder": "Orage",
+      "unknown": "Inconnu"
+    }
+  },
+  "seating": {
+    "sizeLabel": "Taille de la grille",
+    "rows": "Rangées",
+    "cols": "Colonnes",
+    "newLabel": "Ajouter un nom",
+    "placeholder": "Nom",
+    "add": "Ajouter",
+    "poolLabel": "Noms — sélectionnez-en un à placer",
+    "remove": "Supprimer « {{name}} »",
+    "gridLabel": "Plan de classe",
+    "seat": "Place {{number}} : {{name}}",
+    "free": "libre"
   },
   "qr": {
     "label": "Lien ou texte",
@@ -86,6 +126,28 @@
   "text": {
     "label": "Contenu du texte",
     "placeholder": "Saisir du texte …"
+  },
+  "scoreboard": {
+    "newLabel": "Ajouter un nom ou un groupe",
+    "placeholder": "Nom",
+    "add": "Ajouter",
+    "remove": "Supprimer « {{name}} »",
+    "plus": "Point pour {{name}}",
+    "minus": "Retirer un point à {{name}}",
+    "reset": "Réinitialiser les points",
+    "empty": "Aucune entrée pour l'instant."
+  },
+  "hallpass": {
+    "newLabel": "Ajouter un nom",
+    "placeholder": "Nom",
+    "add": "Ajouter",
+    "remove": "Supprimer « {{name}} »",
+    "out": "Faire sortir {{name}}",
+    "back": "{{name}} est de retour",
+    "outShort": "Sorti",
+    "backShort": "Retour",
+    "outLabel": "sorti depuis :",
+    "empty": "Aucun nom pour l'instant."
   },
   "footer": {
     "legalNav": "Informations légales",

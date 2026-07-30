@@ -56,8 +56,20 @@ Import wird eine vom Nutzer ausgewählte Datei lokal eingelesen.
 
 Es werden keine Analyse-, Tracking-, Werbe- oder Fingerprinting-Dienste und
 keine Drittanbieter-Skripte eingesetzt. Die Content-Security-Policy der
-Anwendung unterbindet ausgehende Netzwerkverbindungen, die für das Produkt
-nicht erforderlich sind.
+Anwendung lässt ausgehende Verbindungen nur zur eigenen Herkunft und – sofern
+das optionale Wetter-Widget (Morning Board) genutzt wird – zu Open-Meteo zu
+(siehe nächster Abschnitt). Andere ausgehende Verbindungen werden unterbunden.
+
+## Wetterdaten (Morning Board)
+
+Das optionale Widget „Morning Board" kann aktuelle Wetterdaten anzeigen. Nur
+wenn diese Funktion aktiv genutzt wird, sendet der Browser den gesuchten
+Ortsnamen bzw. die daraus ermittelten Koordinaten an den Dienst **Open-Meteo**
+(`geocoding-api.open-meteo.com` und `api.open-meteo.com`). Übertragen wird
+ausschließlich die Ortsanfrage; es werden keine personenbezogenen Daten, keine
+Namenslisten und keine Kennungen gesendet. Open-Meteo setzt nach eigenen
+Angaben keine Cookies. Wird das Widget nicht verwendet, findet keine solche
+Verbindung statt.
 
 ## Mikrofon
 

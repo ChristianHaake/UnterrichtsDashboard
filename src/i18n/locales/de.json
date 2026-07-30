@@ -13,14 +13,54 @@
   "widgets": {
     "toolbarLabel": "Widget hinzufügen",
     "add": "{{name}} hinzufügen",
+    "loading": "Wird geladen …",
     "kinds": {
       "timer": "Timer",
       "symbols": "Arbeitssymbole",
       "phases": "Unterrichtsphasen",
       "text": "Textfeld",
       "qr": "QR-Code",
-      "randomizer": "Zufallsgenerator"
+      "randomizer": "Zufallsgenerator",
+      "scoreboard": "Punktetafel",
+      "hallpass": "Flurpass",
+      "seating": "Sitzplan",
+      "morningboard": "Morning Board"
     }
+  },
+  "morningboard": {
+    "weatherLabel": "Wetter",
+    "locationLabel": "Ort",
+    "searchPlaceholder": "Stadt suchen …",
+    "search": "Suchen",
+    "refresh": "Aktualisieren",
+    "loading": "Wird geladen …",
+    "unavailable": "Wetter nicht verfügbar.",
+    "offlineCached": "Offline – letzter bekannter Stand.",
+    "notFound": "Ort nicht gefunden.",
+    "wordLabel": "Wort des Tages",
+    "wordPlaceholder": "Wort des Tages eingeben …",
+    "conditions": {
+      "clear": "Klar",
+      "cloudy": "Bewölkt",
+      "fog": "Nebel",
+      "rain": "Regen",
+      "snow": "Schnee",
+      "thunder": "Gewitter",
+      "unknown": "Unbekannt"
+    }
+  },
+  "seating": {
+    "sizeLabel": "Rastergröße",
+    "rows": "Reihen",
+    "cols": "Spalten",
+    "newLabel": "Name hinzufügen",
+    "placeholder": "Name",
+    "add": "Hinzufügen",
+    "poolLabel": "Namen – zum Platzieren auswählen",
+    "remove": "„{{name}}“ entfernen",
+    "gridLabel": "Sitzplan",
+    "seat": "Sitz {{number}}: {{name}}",
+    "free": "frei"
   },
   "qr": {
     "label": "Link oder Text",
@@ -86,6 +126,28 @@
   "text": {
     "label": "Textinhalt",
     "placeholder": "Text eingeben …"
+  },
+  "scoreboard": {
+    "newLabel": "Name oder Gruppe hinzufügen",
+    "placeholder": "Name",
+    "add": "Hinzufügen",
+    "remove": "„{{name}}“ entfernen",
+    "plus": "Punkt für {{name}}",
+    "minus": "Punkt für {{name}} abziehen",
+    "reset": "Punkte zurücksetzen",
+    "empty": "Noch keine Einträge."
+  },
+  "hallpass": {
+    "newLabel": "Name hinzufügen",
+    "placeholder": "Name",
+    "add": "Hinzufügen",
+    "remove": "„{{name}}“ entfernen",
+    "out": "{{name}} rausschicken",
+    "back": "{{name}} zurück",
+    "outShort": "Raus",
+    "backShort": "Zurück",
+    "outLabel": "unterwegs:",
+    "empty": "Noch keine Namen."
   },
   "footer": {
     "legalNav": "Rechtliche Hinweise",

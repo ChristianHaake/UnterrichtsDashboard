@@ -39,4 +39,7 @@ diese Website entfernt auch die gespeicherte Sprachwahl.
 - Import-/Exportformat: JSON-Dateien der Anwendung.
 - Der lokale Speicher ist geräteabhängig begrenzt; für die genannten Inhalte ist
   er unkritisch. Auf iPads (iOS Safari) sind die Kontingente restriktiver.
+- Das Morning-Board-Wetter benötigt eine Internetverbindung und ruft den Dienst
+  Open-Meteo ab (siehe Datenschutz). Ohne Internet wird der letzte bekannte
+  Stand angezeigt. Alle anderen Funktionen arbeiten offline.
 - Ein Lärmpegel-Messer ist noch nicht enthalten.

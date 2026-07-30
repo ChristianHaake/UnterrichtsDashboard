@@ -40,10 +40,12 @@ runtime-validation, and schema-versioning rules.
   only for small preferences (language under key `ud:lang`).
 - Content pages are German-only for now; the UI is multilingual (DE/EN/FR/ES/NL).
   A language note will be added if a legally authoritative translation diverges.
-- Production `_headers` currently sets `connect-src 'none'` and disables the
-  microphone, matching actual Phase 1 behavior (no network calls, no audio).
-  These will be loosened to the minimum required when the noise meter and any
-  optional network features land, and reflected in the privacy page.
+- Production `_headers` CSP keeps `connect-src` tight: `'self'` plus exactly the
+  two Open-Meteo hosts used by the optional Morning Board weather feature
+  (`api.open-meteo.com`, `geocoding-api.open-meteo.com`). No wildcards. The
+  microphone is disabled in `Permissions-Policy` until the noise meter lands.
+  The weather call and its data flow are documented in the privacy page; the
+  feature degrades without blocking when offline.
 
 ## Status
 

@@ -18,6 +18,50 @@ test('adds a widget and persists it and its content across reload', async ({ pag
   await expect(page.getByLabel('Textinhalt')).toHaveValue('Aufgabe 3, Seite 42')
 })
 
+test('scoreboard score persists across reload', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('button', { name: 'Punktetafel hinzufügen' }).click()
+
+  await page.getByPlaceholder('Name').fill('Team A')
+  await page.getByRole('button', { name: 'Hinzufügen', exact: true }).click()
+  await page.getByRole('button', { name: 'Punkt für Team A', exact: true }).click()
+
+  const row = page.getByRole('listitem').filter({ hasText: 'Team A' })
+  await expect(row).toContainText('1')
+
+  await page.waitForTimeout(700)
+  await page.reload()
+
+  await expect(page.getByRole('listitem').filter({ hasText: 'Team A' })).toContainText('1')
+})
+
+test('morning board shows weather from the (mocked) weather API', async ({ page }) => {
+  await page.route('**/geocoding-api.open-meteo.com/**', (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({
+        results: [{ name: 'Hannover', admin1: 'Niedersachsen', latitude: 52.37, longitude: 9.73 }],
+      }),
+    }),
+  )
+  await page.route('**/api.open-meteo.com/**', (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ current: { temperature_2m: 14.2, weather_code: 3 } }),
+    }),
+  )
+
+  await page.goto('/')
+  await page.getByRole('button', { name: 'Morning Board hinzufügen' }).click()
+  await page.getByPlaceholder('Stadt suchen …').fill('Hannover')
+  await page.getByRole('button', { name: 'Suchen', exact: true }).click()
+
+  await expect(page.getByText('Hannover, Niedersachsen')).toBeVisible()
+  await expect(page.getByText(/14 °C · Bewölkt/)).toBeVisible()
+})
+
 test('provides a keyboard alternative to drag for moving widgets', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('button', { name: 'Timer hinzufügen' }).click()

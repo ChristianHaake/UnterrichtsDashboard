@@ -13,14 +13,54 @@
   "widgets": {
     "toolbarLabel": "Añadir un widget",
     "add": "Añadir {{name}}",
+    "loading": "Cargando …",
     "kinds": {
       "timer": "Temporizador",
       "symbols": "Símbolos de trabajo",
       "phases": "Fases de la clase",
       "text": "Campo de texto",
       "qr": "Código QR",
-      "randomizer": "Aleatorizador"
+      "randomizer": "Aleatorizador",
+      "scoreboard": "Marcador",
+      "hallpass": "Pase de pasillo",
+      "seating": "Plano de aula",
+      "morningboard": "Panel matinal"
     }
+  },
+  "morningboard": {
+    "weatherLabel": "Tiempo",
+    "locationLabel": "Ubicación",
+    "searchPlaceholder": "Buscar una ciudad …",
+    "search": "Buscar",
+    "refresh": "Actualizar",
+    "loading": "Cargando …",
+    "unavailable": "Tiempo no disponible.",
+    "offlineCached": "Sin conexión: última lectura conocida.",
+    "notFound": "Ubicación no encontrada.",
+    "wordLabel": "Palabra del día",
+    "wordPlaceholder": "Escribe la palabra del día …",
+    "conditions": {
+      "clear": "Despejado",
+      "cloudy": "Nublado",
+      "fog": "Niebla",
+      "rain": "Lluvia",
+      "snow": "Nieve",
+      "thunder": "Tormenta",
+      "unknown": "Desconocido"
+    }
+  },
+  "seating": {
+    "sizeLabel": "Tamaño de la cuadrícula",
+    "rows": "Filas",
+    "cols": "Columnas",
+    "newLabel": "Añadir un nombre",
+    "placeholder": "Nombre",
+    "add": "Añadir",
+    "poolLabel": "Nombres — selecciona uno para colocar",
+    "remove": "Quitar «{{name}}»",
+    "gridLabel": "Plano de aula",
+    "seat": "Asiento {{number}}: {{name}}",
+    "free": "libre"
   },
   "qr": {
     "label": "Enlace o texto",
@@ -86,6 +126,28 @@
   "text": {
     "label": "Contenido de texto",
     "placeholder": "Escribe un texto …"
+  },
+  "scoreboard": {
+    "newLabel": "Añadir un nombre o grupo",
+    "placeholder": "Nombre",
+    "add": "Añadir",
+    "remove": "Quitar «{{name}}»",
+    "plus": "Punto para {{name}}",
+    "minus": "Quitar un punto a {{name}}",
+    "reset": "Restablecer puntos",
+    "empty": "Aún no hay entradas."
+  },
+  "hallpass": {
+    "newLabel": "Añadir un nombre",
+    "placeholder": "Nombre",
+    "add": "Añadir",
+    "remove": "Quitar «{{name}}»",
+    "out": "Enviar fuera a {{name}}",
+    "back": "{{name}} ha vuelto",
+    "outShort": "Fuera",
+    "backShort": "Vuelto",
+    "outLabel": "fuera desde hace:",
+    "empty": "Aún no hay nombres."
   },
   "footer": {
     "legalNav": "Información legal",

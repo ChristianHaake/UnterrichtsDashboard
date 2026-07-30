@@ -13,14 +13,54 @@
   "widgets": {
     "toolbarLabel": "Add a widget",
     "add": "Add {{name}}",
+    "loading": "Loading …",
     "kinds": {
       "timer": "Timer",
       "symbols": "Work symbols",
       "phases": "Lesson phases",
       "text": "Text field",
       "qr": "QR code",
-      "randomizer": "Randomizer"
+      "randomizer": "Randomizer",
+      "scoreboard": "Scoreboard",
+      "hallpass": "Hall pass",
+      "seating": "Seating plan",
+      "morningboard": "Morning board"
     }
+  },
+  "morningboard": {
+    "weatherLabel": "Weather",
+    "locationLabel": "Location",
+    "searchPlaceholder": "Search a city …",
+    "search": "Search",
+    "refresh": "Refresh",
+    "loading": "Loading …",
+    "unavailable": "Weather unavailable.",
+    "offlineCached": "Offline – last known reading.",
+    "notFound": "Location not found.",
+    "wordLabel": "Word of the day",
+    "wordPlaceholder": "Enter the word of the day …",
+    "conditions": {
+      "clear": "Clear",
+      "cloudy": "Cloudy",
+      "fog": "Fog",
+      "rain": "Rain",
+      "snow": "Snow",
+      "thunder": "Thunderstorm",
+      "unknown": "Unknown"
+    }
+  },
+  "seating": {
+    "sizeLabel": "Grid size",
+    "rows": "Rows",
+    "cols": "Columns",
+    "newLabel": "Add a name",
+    "placeholder": "Name",
+    "add": "Add",
+    "poolLabel": "Names — select one to place",
+    "remove": "Remove \"{{name}}\"",
+    "gridLabel": "Seating plan",
+    "seat": "Seat {{number}}: {{name}}",
+    "free": "empty"
   },
   "qr": {
     "label": "Link or text",
@@ -86,6 +126,28 @@
   "text": {
     "label": "Text content",
     "placeholder": "Enter text …"
+  },
+  "scoreboard": {
+    "newLabel": "Add a name or group",
+    "placeholder": "Name",
+    "add": "Add",
+    "remove": "Remove \"{{name}}\"",
+    "plus": "Point for {{name}}",
+    "minus": "Remove a point from {{name}}",
+    "reset": "Reset scores",
+    "empty": "No entries yet."
+  },
+  "hallpass": {
+    "newLabel": "Add a name",
+    "placeholder": "Name",
+    "add": "Add",
+    "remove": "Remove \"{{name}}\"",
+    "out": "Send {{name}} out",
+    "back": "{{name}} is back",
+    "outShort": "Out",
+    "backShort": "Back",
+    "outLabel": "out for:",
+    "empty": "No names yet."
   },
   "footer": {
     "legalNav": "Legal information",
