@@ -47,5 +47,9 @@ runtime-validation, and schema-versioning rules.
 
 ## Status
 
-Phase 1 (shell & infrastructure) in progress. Review checklist is completed at
-the MVP release gate (Phase 4).
+Phases 1–4 core complete: shell + infrastructure, six MVP widgets, IndexedDB
+persistence with versioned schema and validated import/export/reset, and the
+release-readiness pass (privacy/help content, Playwright + axe e2e). Outstanding
+before public release are tracked in `docs/review-checklist.md`: operator legal
+review of the imprint, manual device/screen-reader testing, the Phase 0
+noise-meter spike, and a bundle code-split.

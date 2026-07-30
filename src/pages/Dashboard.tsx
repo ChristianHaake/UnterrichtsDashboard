@@ -150,6 +150,7 @@ export function Dashboard() {
             type="file"
             accept="application/json,.json"
             className="visually-hidden"
+            aria-label={t('project.import')}
             onChange={onImportFile}
           />
           <button type="button" className="dashboard__reset" onClick={resetProject}>

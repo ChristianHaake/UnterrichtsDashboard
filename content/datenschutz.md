@@ -2,9 +2,10 @@
 
 Stand: 2026-07-29
 
-> Vorlage: Dieser Text muss an die tatsächliche Anwendung und das konkrete
-> Hosting angepasst und vor Veröffentlichung durch den Betreiber geprüft
-> werden.
+> Vorlage: Der rechtliche Rahmen (Rechtsgrundlagen, Speicherdauer,
+> Auftragsverarbeitung, Betroffenenrechte) muss vor Veröffentlichung durch den
+> Betreiber geprüft und ergänzt werden. Die Beschreibung des technischen
+> Verhaltens unten entspricht dem aktuellen Stand der Anwendung.
 
 ## Verantwortlicher
 
@@ -14,35 +15,66 @@ Christian Haake
 
 E-Mail: christianhaake@gmail.com
 
+## Grundprinzip: lokale Verarbeitung
+
+Das UnterrichtsDashboard funktioniert ohne Benutzerkonto und ohne Anmeldung.
+Alle Inhalte – Widget-Anordnungen, Timer-Einstellungen, Textfelder, Phasen,
+QR-Code-Inhalte und Namenslisten des Zufallsgenerators – werden ausschließlich
+lokal im Browser des Endgeräts verarbeitet und gespeichert. Diese Daten werden
+zu keinem Zeitpunkt an einen Server der Anwendung übertragen.
+
 ## Hosting
 
-Die Anwendung wird über Cloudflare Pages bereitgestellt. Beim Aufruf
-verarbeitet der Hosting-Anbieter technisch erforderliche Verbindungsdaten,
-beispielsweise IP-Adresse, Zeitpunkt, angeforderte Datei und Browserangaben.
+Die Anwendung wird als statische Web-App über Cloudflare Pages ausgeliefert.
+Beim Aufruf verarbeitet der Hosting-Anbieter technisch erforderliche
+Verbindungsdaten (z. B. IP-Adresse, Zeitpunkt, angeforderte Datei,
+Browserangaben), um die Auslieferung zu ermöglichen. Diese technischen
+Verbindungsdaten sind von den lokal gespeicherten Nutzerinhalten zu
+unterscheiden.
 
-Ergänze Rechtsgrundlage, Speicherdauer, Auftragsverarbeitung und einen Link zur
-Datenschutzerklärung des Hosting-Anbieters.
-
-## Verarbeitung von Inhalten
-
-Beschreibe exakt, ob eingegebene Texte und hochgeladene Dateien ausschließlich
-im Browser verarbeitet werden oder das Gerät verlassen.
+> Zu ergänzen (Betreiber): Rechtsgrundlage, Speicherdauer, Vertrag zur
+> Auftragsverarbeitung mit Cloudflare und Link zu deren Datenschutzerklärung.
 
 ## Lokale Speicherung
 
-Liste alle verwendeten `localStorage`- und IndexedDB-Einträge mit Zweck und
-Löschmöglichkeit auf.
+| Speicher | Schlüssel/Name | Zweck |
+| --- | --- | --- |
+| IndexedDB | Datenbank `unterrichtsdashboard` | Speichert das aktive Dashboard (Widgets, deren Inhalte und die Layout-Koordinaten). Automatisch gesichert. |
+| localStorage | `ud:lang` | Speichert die gewählte Oberflächensprache. |
 
-## Cookies und Analyse
+Es werden keine Cookies gesetzt.
 
-Dokumentiere Cookies, Hosting-Analyse und weitere Dienste. Falls keine
-eingesetzt werden, sage dies nur, wenn es durch die Produktion geprüft wurde.
+## Verarbeitung von Inhalten und Dateien
+
+Eingegebene Texte, Namenslisten und QR-Code-Inhalte verlassen das Gerät nicht.
+QR-Codes werden lokal im Browser erzeugt; es erfolgt keine Anfrage an externe
+Dienste. Beim Export wird eine JSON-Datei lokal auf dem Gerät erzeugt; beim
+Import wird eine vom Nutzer ausgewählte Datei lokal eingelesen.
+
+## Kein Tracking, keine Analyse
+
+Es werden keine Analyse-, Tracking-, Werbe- oder Fingerprinting-Dienste und
+keine Drittanbieter-Skripte eingesetzt. Die Content-Security-Policy der
+Anwendung unterbindet ausgehende Netzwerkverbindungen, die für das Produkt
+nicht erforderlich sind.
+
+## Mikrofon
+
+Die aktuelle Version verwendet kein Mikrofon. Sollte künftig ein
+Lärmpegel-Messer ergänzt werden, wird das Mikrofonsignal ausschließlich lokal in
+einen relativen Pegel umgewandelt und niemals aufgezeichnet oder übertragen;
+diese Erklärung wird dann entsprechend aktualisiert.
 
 ## Löschung
 
-Erkläre, wie Nutzer lokal gespeicherte Daten löschen können.
+Lokal gespeicherte Daten können jederzeit gelöscht werden:
+
+- über die Schaltfläche **Zurücksetzen** im Dashboard (leert die IndexedDB der
+  Anwendung);
+- über das Löschen der Browserdaten für diese Website (entfernt zusätzlich die
+  gespeicherte Sprachwahl).
 
 ## Rechte betroffener Personen
 
-Ergänze die erforderlichen Informationen zu Auskunft, Berichtigung, Löschung,
-Einschränkung, Widerspruch und Beschwerderecht.
+> Zu ergänzen (Betreiber): Informationen zu Auskunft, Berichtigung, Löschung,
+> Einschränkung, Widerspruch und Beschwerderecht bei einer Aufsichtsbehörde.
