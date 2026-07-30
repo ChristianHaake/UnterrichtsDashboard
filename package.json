@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Ein lokal-first Classroom-Management-Dashboard für den Beamer- und Tafeleinsatz im Präsenzunterricht.",
   "license": "GPL-3.0-only",
-  "homepage": "https://unterrichtsdashboard.pages.dev",
+  "homepage": "https://ud.haak3.de",
   "repository": {
     "type": "git",
     "url": "https://github.com/ChristianHaake/UnterrichtsDashboard.git"

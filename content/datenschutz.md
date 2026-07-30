@@ -25,7 +25,8 @@ zu keinem Zeitpunkt an einen Server der Anwendung übertragen.
 
 ## Hosting
 
-Die Anwendung wird als statische Web-App über Cloudflare Pages ausgeliefert.
+Die Anwendung wird als statische Web-App über Cloudflare (ud.haak3.de)
+ausgeliefert.
 Beim Aufruf verarbeitet der Hosting-Anbieter technisch erforderliche
 Verbindungsdaten (z. B. IP-Adresse, Zeitpunkt, angeforderte Datei,
 Browserangaben), um die Auslieferung zu ermöglichen. Diese technischen

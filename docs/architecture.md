@@ -3,7 +3,7 @@
 ## Product
 
 - App: `UnterrichtsDashboard`
-- Live URL: `https://unterrichtsdashboard.pages.dev`
+- Live URL: `https://ud.haak3.de`
 - Repository: `https://github.com/ChristianHaake/UnterrichtsDashboard`
 - Intended users: `Lehrkräfte im Präsenzunterricht an Beamern und interaktiven Displays`
 

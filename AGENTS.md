@@ -28,7 +28,7 @@ https://github.com/ChristianHaake/haak3-webapp-standard
 ## App-specific rules
 
 - App name: `UnterrichtsDashboard`
-- Live URL: `https://unterrichtsdashboard.pages.dev`
+- Live URL: `https://ud.haak3.de`
 - Repository: `https://github.com/ChristianHaake/UnterrichtsDashboard`
 - Add further project-specific instructions here.
 

@@ -2,7 +2,7 @@
 
 Ein lokal-first Classroom-Management-Dashboard für den Beamer- und Tafeleinsatz im Präsenzunterricht.
 
-Live application: [https://unterrichtsdashboard.pages.dev](https://unterrichtsdashboard.pages.dev)
+Live application: [https://ud.haak3.de](https://ud.haak3.de)
 
 ## Purpose
 

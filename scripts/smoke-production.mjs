@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // Post-deploy smoke check: verifies the deployed instance returns the expected
 // security headers and serves the SPA shell. Usage:
-//   node scripts/smoke-production.mjs https://unterrichtsdashboard.pages.dev
+//   node scripts/smoke-production.mjs https://ud.haak3.de
 
-const target = process.argv[2] ?? process.env.SMOKE_URL ?? 'https://unterrichtsdashboard.pages.dev'
+const target = process.argv[2] ?? process.env.SMOKE_URL ?? 'https://ud.haak3.de'
 
 const REQUIRED_HEADERS = {
   'content-security-policy': /default-src 'self'/i,
