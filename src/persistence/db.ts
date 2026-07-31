@@ -1,9 +1,9 @@
 import Dexie, { type Table } from 'dexie'
-import type { DashboardDocument } from './schema'
+import type { WorkspaceDocument } from './schema'
 
 interface DocumentRow {
   key: string
-  value: DashboardDocument
+  value: WorkspaceDocument
 }
 
 // Namespaced database name. A single active dashboard document is stored today;
@@ -20,12 +20,12 @@ class UnterrichtsDashboardDB extends Dexie {
 const db = new UnterrichtsDashboardDB()
 const ACTIVE_KEY = 'active'
 
-export async function loadDocument(): Promise<DashboardDocument | null> {
+export async function loadDocument(): Promise<WorkspaceDocument | null> {
   const row = await db.documents.get(ACTIVE_KEY)
   return row?.value ?? null
 }
 
-export async function saveDocument(doc: DashboardDocument): Promise<void> {
+export async function saveDocument(doc: WorkspaceDocument): Promise<void> {
   await db.documents.put({ key: ACTIVE_KEY, value: doc })
 }
 

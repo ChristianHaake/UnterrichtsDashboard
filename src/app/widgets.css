@@ -43,6 +43,78 @@
   border: 0;
 }
 
+/* Top bars: palette + board tabs */
+.dashboard__bars {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+}
+
+/* Board tabs */
+.board-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.board-tab {
+  display: inline-flex;
+  align-items: center;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.board-tab--active {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+.board-tab__name {
+  padding: 6px 10px;
+  font: inherit;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.board-tab--active .board-tab__name {
+  color: var(--primary);
+  font-weight: 600;
+}
+.board-tab__remove {
+  min-width: 26px;
+  min-height: 30px;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.board-tab__remove:hover {
+  color: var(--danger);
+}
+.board-tabs__edit {
+  padding: 6px 10px;
+  font: inherit;
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-sm);
+}
+.board-tabs__add {
+  min-width: 34px;
+  min-height: 34px;
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.board-tabs__add:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
 /* App palette */
 .palette {
   position: relative;

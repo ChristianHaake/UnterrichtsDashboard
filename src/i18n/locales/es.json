@@ -186,6 +186,14 @@
     "outLabel": "fuera desde hace:",
     "empty": "Aún no hay nombres."
   },
+  "board": {
+    "name": "Tablero {{number}}",
+    "tabsLabel": "Tableros",
+    "add": "Nuevo tablero",
+    "rename": "Renombrar tablero",
+    "remove": "Eliminar el tablero «{{name}}»",
+    "confirmRemove": "¿Eliminar el tablero «{{name}}» y todo su contenido?"
+  },
   "palette": {
     "add": "Añadir app",
     "search": "Buscar apps …",

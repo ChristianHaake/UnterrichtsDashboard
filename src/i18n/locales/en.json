@@ -186,6 +186,14 @@
     "outLabel": "out for:",
     "empty": "No names yet."
   },
+  "board": {
+    "name": "Board {{number}}",
+    "tabsLabel": "Boards",
+    "add": "New board",
+    "rename": "Rename board",
+    "remove": "Delete board \"{{name}}\"",
+    "confirmRemove": "Delete board \"{{name}}\" and all its contents?"
+  },
   "palette": {
     "add": "Add app",
     "search": "Search apps …",

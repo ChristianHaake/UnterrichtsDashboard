@@ -1,11 +1,11 @@
-import { parseDashboardDocument, type ParseResult } from './validate'
-import type { DashboardDocument } from './schema'
+import { parseWorkspaceDocument, type ParseResult } from './validate'
+import type { WorkspaceDocument } from './schema'
 
-export function serializeDocument(doc: DashboardDocument): string {
+export function serializeDocument(doc: WorkspaceDocument): string {
   return JSON.stringify(doc, null, 2)
 }
 
-/** Parse imported file text into a validated document, or an actionable error. */
+/** Parse imported file text into a validated workspace, or an actionable error. */
 export function deserializeDocument(text: string): ParseResult {
   let parsed: unknown
   try {
@@ -13,7 +13,7 @@ export function deserializeDocument(text: string): ParseResult {
   } catch {
     return { ok: false, error: 'invalid-json' }
   }
-  return parseDashboardDocument(parsed)
+  return parseWorkspaceDocument(parsed)
 }
 
 /** Reduce an arbitrary base name to a safe, meaningful filename stem. */

@@ -46,5 +46,18 @@ export function migrateToCurrent(input: Record<string, unknown>, fromVersion: nu
     version = 2
   }
 
+  if (version === 2) {
+    // Wrap the single board into a one-board workspace.
+    const board: Record<string, unknown> = {
+      id: 'b-0',
+      name: 'Board 1',
+      widgets: doc.widgets ?? [],
+      layout: doc.layout ?? [],
+      ...(isRecord(doc.view) ? { view: doc.view } : {}),
+    }
+    doc = { schemaVersion: 3, boards: [board], activeBoardId: 'b-0' }
+    version = 3
+  }
+
   return version === SCHEMA_VERSION ? doc : null
 }

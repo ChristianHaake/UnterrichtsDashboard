@@ -186,6 +186,14 @@
     "outLabel": "weg sinds:",
     "empty": "Nog geen namen."
   },
+  "board": {
+    "name": "Bord {{number}}",
+    "tabsLabel": "Borden",
+    "add": "Nieuw bord",
+    "rename": "Bord hernoemen",
+    "remove": "Bord \"{{name}}\" verwijderen",
+    "confirmRemove": "Bord \"{{name}}\" en alle inhoud verwijderen?"
+  },
   "palette": {
     "add": "App toevoegen",
     "search": "Apps zoeken …",

@@ -186,6 +186,14 @@
     "outLabel": "unterwegs:",
     "empty": "Noch keine Namen."
   },
+  "board": {
+    "name": "Tafel {{number}}",
+    "tabsLabel": "Tafeln",
+    "add": "Neue Tafel",
+    "rename": "Tafel umbenennen",
+    "remove": "Tafel „{{name}}“ löschen",
+    "confirmRemove": "Tafel „{{name}}“ mit allen Inhalten löschen?"
+  },
   "palette": {
     "add": "App hinzufügen",
     "search": "Apps durchsuchen …",

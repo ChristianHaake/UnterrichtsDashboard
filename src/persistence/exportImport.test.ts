@@ -5,13 +5,18 @@ import {
   sanitizeFilename,
   serializeDocument,
 } from './exportImport'
-import { emptyDocument, SCHEMA_VERSION } from './schema'
+import { emptyWorkspace, SCHEMA_VERSION } from './schema'
 
 describe('serialize / deserialize round-trip', () => {
-  it('round-trips a valid document', () => {
-    const doc = emptyDocument()
+  it('round-trips a valid workspace', () => {
+    const doc = emptyWorkspace()
     const result = deserializeDocument(serializeDocument(doc))
-    expect(result).toEqual({ ok: true, doc: { schemaVersion: SCHEMA_VERSION, widgets: [], layout: [] } })
+    expect(result.ok).toBe(true)
+    if (result.ok) {
+      expect(result.doc.schemaVersion).toBe(SCHEMA_VERSION)
+      expect(result.doc.boards).toHaveLength(1)
+      expect(result.doc.activeBoardId).toBe(result.doc.boards[0].id)
+    }
   })
 
   it('reports invalid JSON without throwing', () => {

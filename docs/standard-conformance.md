@@ -61,6 +61,11 @@ runtime-validation, and schema-versioning rules.
   per-kind switch), and a searchable, categorized palette places apps. Adding an
   app = add a state parser (`WIDGET_STATE`), a kind (`WIDGET_KINDS`), and one
   manifest line. A completeness test enforces one manifest + parser per kind.
+- Workspace of multiple **boards** (schema v3): each board has its own apps,
+  canvas layout, and viewport; a tab bar switches/adds/renames/deletes boards.
+  Persisted as one workspace document; export/import and reset cover all boards.
+  Migrations chain v1 (grid) → v2 (canvas) → v3 (workspace), so existing stored
+  dashboards upgrade automatically without data loss.
 - Persistence: Dexie.js over IndexedDB; `localStorage` only for small
   preferences (language under key `ud:lang`).
 - Content pages are German-only for now; the UI is multilingual (DE/EN/FR/ES/NL).

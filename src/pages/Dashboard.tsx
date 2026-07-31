@@ -5,58 +5,93 @@ import { clampZoom, dragItem, moveItem, nextPosition } from '../canvas/layout'
 import { WidgetFrame } from '../widgets/WidgetFrame'
 import { WidgetHost } from '../widgets/WidgetHost'
 import { AppPalette } from '../widgets/AppPalette'
+import { BoardTabs } from '../widgets/BoardTabs'
 import { MANIFESTS } from '../widgets/manifest'
 import { WIDGET_STATE } from '../widgets/state'
 import type { MoveDirection, WidgetInstance, WidgetKind } from '../widgets/types'
-import { SCHEMA_VERSION, type DashboardDocument, type LayoutItem } from '../persistence/schema'
+import { SCHEMA_VERSION, type LayoutItem, type WorkspaceDocument } from '../persistence/schema'
 import { buildExportFilename, deserializeDocument, serializeDocument } from '../persistence/exportImport'
 import { clearDocument, loadDocument, saveDocument } from '../persistence/db'
 
+const DEFAULT_VIEW: ViewState = { x: 0, y: 0, zoom: 1 }
+
+interface BoardUI {
+  id: string
+  name: string
+  widgets: WidgetInstance[]
+  layout: LayoutItem[]
+  states: Record<string, unknown>
+  view: ViewState
+}
+
 export function Dashboard() {
   const { t } = useTranslation()
-  const counter = useRef(0)
+  const widgetCounter = useRef(0)
+  const boardCounter = useRef(1)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const [widgets, setWidgets] = useState<WidgetInstance[]>([])
-  const [layout, setLayout] = useState<LayoutItem[]>([])
-  const [states, setStates] = useState<Record<string, unknown>>({})
-  const [view, setView] = useState<ViewState>({ x: 0, y: 0, zoom: 1 })
+  const [boards, setBoards] = useState<BoardUI[]>(() => [
+    { id: 'b-0', name: t('board.name', { number: 1 }), widgets: [], layout: [], states: {}, view: DEFAULT_VIEW },
+  ])
+  const [activeId, setActiveId] = useState('b-0')
   const [hydrated, setHydrated] = useState(false)
   const [importError, setImportError] = useState<string | null>(null)
+
+  const active = boards.find((b) => b.id === activeId) ?? boards[0]
 
   useEffect(() => {
     document.title = 'UnterrichtsDashboard'
   }, [])
 
-  function buildDocument(): DashboardDocument {
+  function updateActive(fn: (board: BoardUI) => BoardUI) {
+    setBoards((current) => current.map((b) => (b.id === activeId ? fn(b) : b)))
+  }
+
+  function buildWorkspace(): WorkspaceDocument {
     return {
       schemaVersion: SCHEMA_VERSION,
-      widgets: widgets.map((w) => ({ id: w.id, kind: w.kind, state: states[w.id] })),
-      layout: layout.map(({ i, x, y, w, h }) => ({ i, x, y, w, h })),
-      view,
+      boards: boards.map((b) => ({
+        id: b.id,
+        name: b.name,
+        widgets: b.widgets.map((w) => ({ id: w.id, kind: w.kind, state: b.states[w.id] })),
+        layout: b.layout.map(({ i, x, y, w, h }) => ({ i, x, y, w, h })),
+        view: b.view,
+      })),
+      activeBoardId: activeId,
     }
   }
 
-  function applyDocument(doc: DashboardDocument) {
-    setWidgets(doc.widgets.map((w) => ({ id: w.id, kind: w.kind })))
-    setStates(Object.fromEntries(doc.widgets.map((w) => [w.id, w.state])))
-    setLayout(doc.layout.map((item) => ({ ...item })))
-    if (doc.view) {
-      setView({ x: doc.view.x, y: doc.view.y, zoom: clampZoom(doc.view.zoom) })
-    }
-    const maxIndex = doc.widgets.reduce((max, w) => {
-      const match = /^w-(\d+)$/.exec(w.id)
+  function applyWorkspace(doc: WorkspaceDocument) {
+    setBoards(
+      doc.boards.map((board) => ({
+        id: board.id,
+        name: board.name,
+        widgets: board.widgets.map((w) => ({ id: w.id, kind: w.kind })),
+        layout: board.layout.map((item) => ({ ...item })),
+        states: Object.fromEntries(board.widgets.map((w) => [w.id, w.state])),
+        view: board.view ? { x: board.view.x, y: board.view.y, zoom: clampZoom(board.view.zoom) } : DEFAULT_VIEW,
+      })),
+    )
+    setActiveId(doc.activeBoardId)
+    const widgetMax = doc.boards
+      .flatMap((b) => b.widgets)
+      .reduce((max, w) => {
+        const match = /^w-(\d+)$/.exec(w.id)
+        return match ? Math.max(max, Number(match[1])) : max
+      }, -1)
+    widgetCounter.current = Math.max(widgetCounter.current, widgetMax + 1)
+    const boardMax = doc.boards.reduce((max, b) => {
+      const match = /^b-(\d+)$/.exec(b.id)
       return match ? Math.max(max, Number(match[1])) : max
     }, -1)
-    counter.current = Math.max(counter.current, maxIndex + 1)
+    boardCounter.current = Math.max(boardCounter.current, boardMax + 1)
   }
 
   useEffect(() => {
     let cancelled = false
     loadDocument()
       .then((doc) => {
-        if (cancelled) return
-        if (doc) applyDocument(doc)
+        if (!cancelled && doc) applyWorkspace(doc)
       })
       .catch(() => undefined)
       .finally(() => {
@@ -70,47 +105,98 @@ export function Dashboard() {
   useEffect(() => {
     if (!hydrated) return
     const handle = setTimeout(() => {
-      void saveDocument(buildDocument())
+      void saveDocument(buildWorkspace())
     }, 400)
     return () => clearTimeout(handle)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [widgets, layout, states, view, hydrated])
+  }, [boards, activeId, hydrated])
 
+  // Widget operations act on the active board.
   function addWidget(kind: WidgetKind) {
-    const id = `w-${counter.current++}`
+    const id = `w-${widgetCounter.current++}`
     const { w, h } = MANIFESTS[kind].size
-    const { x, y } = nextPosition(widgets.length)
-    setWidgets((current) => [...current, { id, kind }])
-    setStates((current) => ({ ...current, [id]: structuredClone(WIDGET_STATE[kind].default) }))
-    setLayout((current) => [...current, { i: id, x, y, w, h }])
+    updateActive((b) => {
+      const { x, y } = nextPosition(b.widgets.length)
+      return {
+        ...b,
+        widgets: [...b.widgets, { id, kind }],
+        states: { ...b.states, [id]: structuredClone(WIDGET_STATE[kind].default) },
+        layout: [...b.layout, { i: id, x, y, w, h }],
+      }
+    })
   }
 
   function removeWidget(id: string) {
-    setWidgets((current) => current.filter((widget) => widget.id !== id))
-    setLayout((current) => current.filter((item) => item.i !== id))
-    setStates((current) => {
-      const next = { ...current }
-      delete next[id]
-      return next
+    updateActive((b) => {
+      const states = { ...b.states }
+      delete states[id]
+      return {
+        ...b,
+        widgets: b.widgets.filter((w) => w.id !== id),
+        layout: b.layout.filter((item) => item.i !== id),
+        states,
+      }
     })
   }
 
   function move(id: string, direction: MoveDirection) {
-    setLayout((current) => moveItem(current, id, direction))
+    updateActive((b) => ({ ...b, layout: moveItem(b.layout, id, direction) }))
   }
 
   function drag(id: string, clientDx: number, clientDy: number) {
-    setLayout((current) => dragItem(current, id, clientDx / view.zoom, clientDy / view.zoom))
+    updateActive((b) => ({ ...b, layout: dragItem(b.layout, id, clientDx / b.view.zoom, clientDy / b.view.zoom) }))
+  }
+
+  function setWidgetState(id: string, next: unknown) {
+    updateActive((b) => ({ ...b, states: { ...b.states, [id]: next } }))
+  }
+
+  function setView(view: ViewState) {
+    updateActive((b) => ({ ...b, view }))
+  }
+
+  // Board operations.
+  function addBoard() {
+    const id = `b-${boardCounter.current++}`
+    const board: BoardUI = {
+      id,
+      name: t('board.name', { number: boards.length + 1 }),
+      widgets: [],
+      layout: [],
+      states: {},
+      view: DEFAULT_VIEW,
+    }
+    setBoards((current) => [...current, board])
+    setActiveId(id)
+  }
+
+  function renameBoard(id: string, name: string) {
+    setBoards((current) => current.map((b) => (b.id === id ? { ...b, name } : b)))
+  }
+
+  function removeBoard(id: string) {
+    if (boards.length <= 1) return
+    const board = boards.find((b) => b.id === id)
+    if (board && board.widgets.length > 0 && !window.confirm(t('board.confirmRemove', { name: board.name }))) {
+      return
+    }
+    const remaining = boards.filter((b) => b.id !== id)
+    setBoards(remaining)
+    if (activeId === id) setActiveId(remaining[0].id)
   }
 
   function exportProject() {
-    const blob = new Blob([serializeDocument(buildDocument())], { type: 'application/json' })
+    const blob = new Blob([serializeDocument(buildWorkspace())], { type: 'application/json' })
     const url = URL.createObjectURL(blob)
     const anchor = document.createElement('a')
     anchor.href = url
     anchor.download = buildExportFilename(new Date())
     anchor.click()
     URL.revokeObjectURL(url)
+  }
+
+  function hasAnyWidgets() {
+    return boards.some((b) => b.widgets.length > 0)
   }
 
   function onImportFile(event: ChangeEvent<HTMLInputElement>) {
@@ -123,22 +209,17 @@ export function Dashboard() {
         setImportError(t('project.importError', { reason: result.error }))
         return
       }
-      if (widgets.length > 0 && !window.confirm(t('project.confirmReplace'))) {
-        return
-      }
-      applyDocument(result.doc)
+      if (hasAnyWidgets() && !window.confirm(t('project.confirmReplace'))) return
+      applyWorkspace(result.doc)
       setImportError(null)
     })
   }
 
   function resetProject() {
-    if (widgets.length > 0 && !window.confirm(t('project.confirmReset'))) {
-      return
-    }
-    setWidgets([])
-    setLayout([])
-    setStates({})
-    setView({ x: 0, y: 0, zoom: 1 })
+    if (hasAnyWidgets() && !window.confirm(t('project.confirmReset'))) return
+    const id = `b-${boardCounter.current++}`
+    setBoards([{ id, name: t('board.name', { number: 1 }), widgets: [], layout: [], states: {}, view: DEFAULT_VIEW }])
+    setActiveId(id)
     setImportError(null)
     void clearDocument()
   }
@@ -168,19 +249,27 @@ export function Dashboard() {
         </div>
       </div>
 
+      <div className="dashboard__bars">
+        <AppPalette onAdd={addWidget} />
+        <BoardTabs
+          boards={boards.map((b) => ({ id: b.id, name: b.name }))}
+          activeId={activeId}
+          onSwitch={setActiveId}
+          onAdd={addBoard}
+          onRename={renameBoard}
+          onRemove={removeBoard}
+        />
+      </div>
+
       {importError && (
         <p className="dashboard__error" role="alert">
           {importError}
         </p>
       )}
 
-      <div className="dashboard__toolbar">
-        <AppPalette onAdd={addWidget} />
-      </div>
-
-      <CanvasSurface view={view} onViewChange={setView}>
-        {widgets.map((widget) => {
-          const item = layout.find((l) => l.i === widget.id)
+      <CanvasSurface view={active.view} onViewChange={setView}>
+        {active.widgets.map((widget) => {
+          const item = active.layout.find((l) => l.i === widget.id)
           if (!item) return null
           return (
             <div
@@ -196,8 +285,8 @@ export function Dashboard() {
               >
                 <WidgetHost
                   kind={widget.kind}
-                  state={states[widget.id]}
-                  onChange={(next) => setStates((current) => ({ ...current, [widget.id]: next }))}
+                  state={active.states[widget.id]}
+                  onChange={(next) => setWidgetState(widget.id, next)}
                 />
               </WidgetFrame>
             </div>
@@ -205,7 +294,7 @@ export function Dashboard() {
         })}
       </CanvasSurface>
 
-      {widgets.length === 0 && (
+      {active.widgets.length === 0 && (
         <div className="dashboard__empty" role="note">
           <p>{t('dashboard.emptyTitle')}</p>
           <p className="dashboard__empty-hint">{t('dashboard.emptyHint')}</p>

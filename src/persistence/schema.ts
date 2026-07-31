@@ -1,12 +1,11 @@
 import type { WidgetKind } from '../widgets/types'
 
-/** Bump when the persisted shape changes; add a migration in migrate.ts. */
-export const SCHEMA_VERSION = 2
+/** Bump when the persisted shape changes; add a migration in migrate.ts.
+ * v1: 12-column grid layout. v2: canvas world-pixel layout, single board.
+ * v3: workspace of multiple boards. */
+export const SCHEMA_VERSION = 3
 
-/**
- * Canvas layout: `x`/`y` are world-pixel coordinates on the pannable surface
- * (v2). In v1 these were 12-column grid units; see migrate.ts.
- */
+/** Canvas world-pixel coordinates. */
 export interface LayoutItem {
   i: string
   x: number
@@ -21,21 +20,33 @@ export interface PersistedWidget {
   state: unknown
 }
 
-/** Canvas pan/zoom. Optional and non-critical: an invalid view is dropped, not
- * rejected, so a bad viewport never blocks loading a valid dashboard. */
+/** Canvas pan/zoom. Optional and non-critical: an invalid view is dropped. */
 export interface CanvasView {
   x: number
   y: number
   zoom: number
 }
 
-export interface DashboardDocument {
-  schemaVersion: number
+/** One named board (its own widgets, canvas layout, and viewport). */
+export interface Board {
+  id: string
+  name: string
   widgets: PersistedWidget[]
   layout: LayoutItem[]
   view?: CanvasView
 }
 
-export function emptyDocument(): DashboardDocument {
-  return { schemaVersion: SCHEMA_VERSION, widgets: [], layout: [] }
+export interface WorkspaceDocument {
+  schemaVersion: number
+  boards: Board[]
+  activeBoardId: string
+}
+
+export function emptyBoard(id: string, name: string): Board {
+  return { id, name, widgets: [], layout: [] }
+}
+
+export function emptyWorkspace(): WorkspaceDocument {
+  const board = emptyBoard('b-0', 'Board 1')
+  return { schemaVersion: SCHEMA_VERSION, boards: [board], activeBoardId: board.id }
 }

@@ -186,6 +186,14 @@
     "outLabel": "sorti depuis :",
     "empty": "Aucun nom pour l'instant."
   },
+  "board": {
+    "name": "Tableau {{number}}",
+    "tabsLabel": "Tableaux",
+    "add": "Nouveau tableau",
+    "rename": "Renommer le tableau",
+    "remove": "Supprimer le tableau « {{name}} »",
+    "confirmRemove": "Supprimer le tableau « {{name}} » et tout son contenu ?"
+  },
   "palette": {
     "add": "Ajouter une app",
     "search": "Rechercher des apps …",

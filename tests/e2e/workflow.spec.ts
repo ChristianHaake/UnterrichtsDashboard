@@ -116,6 +116,26 @@ test('canvas zoom controls change and reset the zoom level', async ({ page }) =>
   await expect(page.getByText('100%')).toBeVisible()
 })
 
+test('boards isolate widgets and persist across reload', async ({ page }) => {
+  await page.goto('/')
+  await addApp(page, 'Timer')
+  await expect(page.getByRole('button', { name: 'Timer entfernen' })).toBeVisible()
+
+  // New board is empty and does not show board 1's widgets.
+  await page.getByRole('button', { name: 'Neue Tafel' }).click()
+  await expect(page.getByText('Noch keine Widgets hinzugefügt.')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Timer entfernen' })).toHaveCount(0)
+
+  // Switching back shows board 1's widget again.
+  await page.getByRole('button', { name: 'Tafel 1', exact: true }).click()
+  await expect(page.getByRole('button', { name: 'Timer entfernen' })).toBeVisible()
+
+  await page.waitForTimeout(700)
+  await page.reload()
+  await expect(page.getByRole('button', { name: 'Tafel 2', exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Timer entfernen' })).toBeVisible()
+})
+
 test('canvas view (zoom) persists across reload', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('button', { name: 'Vergrößern' }).click()
