@@ -20,6 +20,18 @@ Temporary or permanent: Permanent (design decision).
 Review date: After the Phase 0 feasibility spike.
 ```
 
+```text
+Rule: All functionality must be keyboard operable (WCAG 2.2 AA).
+Reason: The Whiteboard widget is freehand drawing; capturing arbitrary ink has
+  no meaningful keyboard equivalent.
+Scope: Whiteboard widget drawing surface only. Its clear/undo/colour/width
+  controls are keyboard operable; the canvas has an accessible name.
+Temporary or permanent: Permanent for freehand input.
+Most accessible alternative: The Text and Sticky Notes widgets cover
+  keyboard-authored content on the dashboard.
+Review date: Revisit if a structured (non-freehand) drawing mode is added.
+```
+
 ## Not applicable (scope filter)
 
 This product is a classroom dashboard, not a document generator. The following

@@ -24,7 +24,34 @@
       "scoreboard": "Tableau de points",
       "hallpass": "Laissez-passer",
       "seating": "Plan de classe",
-      "morningboard": "Tableau du matin"
+      "morningboard": "Tableau du matin",
+      "stickynotes": "Notes autocollantes",
+      "whiteboard": "Tableau blanc"
+    }
+  },
+  "whiteboard": {
+    "toolbar": "Outils de dessin",
+    "colorLabel": "Couleur",
+    "color": "Couleur {{color}}",
+    "widthLabel": "Épaisseur du trait",
+    "width": "Épaisseur du trait {{width}}",
+    "undo": "Annuler",
+    "clear": "Effacer",
+    "confirmClear": "Effacer tout le tableau ?",
+    "canvasLabel": "Zone de dessin (dessin à main levée à la souris, au stylet ou au doigt)"
+  },
+  "stickynotes": {
+    "add": "Ajouter une note",
+    "empty": "Aucune note pour l'instant.",
+    "placeholder": "Note …",
+    "noteLabel": "Note {{number}}",
+    "colorLabel": "Couleur de la note {{number}}",
+    "remove": "Supprimer la note {{number}}",
+    "colors": {
+      "yellow": "Jaune",
+      "green": "Vert",
+      "blue": "Bleu",
+      "pink": "Rose"
     }
   },
   "morningboard": {

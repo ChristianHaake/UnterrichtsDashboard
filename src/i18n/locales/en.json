@@ -24,7 +24,34 @@
       "scoreboard": "Scoreboard",
       "hallpass": "Hall pass",
       "seating": "Seating plan",
-      "morningboard": "Morning board"
+      "morningboard": "Morning board",
+      "stickynotes": "Sticky notes",
+      "whiteboard": "Whiteboard"
+    }
+  },
+  "whiteboard": {
+    "toolbar": "Drawing tools",
+    "colorLabel": "Colour",
+    "color": "Colour {{color}}",
+    "widthLabel": "Stroke width",
+    "width": "Stroke width {{width}}",
+    "undo": "Undo",
+    "clear": "Clear",
+    "confirmClear": "Clear the whole canvas?",
+    "canvasLabel": "Drawing canvas (freehand with mouse, pen, or finger)"
+  },
+  "stickynotes": {
+    "add": "Add a note",
+    "empty": "No notes yet.",
+    "placeholder": "Note …",
+    "noteLabel": "Note {{number}}",
+    "colorLabel": "Colour for note {{number}}",
+    "remove": "Remove note {{number}}",
+    "colors": {
+      "yellow": "Yellow",
+      "green": "Green",
+      "blue": "Blue",
+      "pink": "Pink"
     }
   },
   "morningboard": {

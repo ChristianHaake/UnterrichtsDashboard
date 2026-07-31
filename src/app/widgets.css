@@ -845,6 +845,199 @@
   cursor: pointer;
 }
 
+/* Sticky notes widget */
+.sticky {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sticky__add {
+  align-self: flex-start;
+  padding: 8px 14px;
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.sticky__add:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.sticky__empty {
+  margin: 0;
+  color: var(--text-muted);
+}
+.sticky__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+.sticky__note {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+  border: 1px solid rgb(0 0 0 / 10%);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-soft);
+}
+.sticky__note--yellow {
+  background: #fff7cc;
+}
+.sticky__note--green {
+  background: #d8f5df;
+}
+.sticky__note--blue {
+  background: #dbe8ff;
+}
+.sticky__note--pink {
+  background: #ffd9ec;
+}
+.sticky__text {
+  width: 100%;
+  padding: 6px;
+  font: inherit;
+  color: #1a1a1a;
+  background: rgb(255 255 255 / 55%);
+  border: none;
+  border-radius: var(--radius-sm);
+  resize: vertical;
+}
+.sticky__text:focus-visible {
+  outline: 2px solid rgb(0 0 0 / 45%);
+}
+.sticky__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+.sticky__colors {
+  display: flex;
+  gap: 4px;
+}
+.sticky__color {
+  width: 20px;
+  height: 20px;
+  min-height: 20px;
+  padding: 0;
+  border: 2px solid rgb(0 0 0 / 25%);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.sticky__color--active {
+  border-color: #1a1a1a;
+  box-shadow: 0 0 0 2px rgb(255 255 255 / 80%);
+}
+.sticky__color--yellow {
+  background: #ffe066;
+}
+.sticky__color--green {
+  background: #74d68a;
+}
+.sticky__color--blue {
+  background: #7aa7ff;
+}
+.sticky__color--pink {
+  background: #ff8dc0;
+}
+.sticky__remove {
+  min-width: 30px;
+  min-height: 30px;
+  color: #1a1a1a;
+  background: rgb(255 255 255 / 40%);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+/* Whiteboard widget */
+.whiteboard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+.whiteboard__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.whiteboard__colors,
+.whiteboard__widths,
+.whiteboard__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.whiteboard__swatch {
+  width: 26px;
+  height: 26px;
+  min-height: 26px;
+  padding: 0;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.whiteboard__swatch--active {
+  border-color: var(--text);
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--text);
+}
+.whiteboard__width {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-height: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.whiteboard__width--active {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+.whiteboard__width span {
+  display: block;
+  background: var(--text);
+  border-radius: 50%;
+}
+.whiteboard__actions button {
+  padding: 6px 12px;
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.whiteboard__actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.whiteboard__clear:not(:disabled) {
+  color: var(--danger);
+}
+.whiteboard__canvas {
+  flex: 1;
+  width: 100%;
+  min-height: 160px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  /* Prevent scrolling/zoom gestures while drawing with a finger or pen. */
+  touch-action: none;
+  cursor: crosshair;
+}
+
 /* Text widget */
 .text-widget {
   display: flex;

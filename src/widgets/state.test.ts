@@ -49,6 +49,27 @@ describe('widget state parsers (untrusted import validation)', () => {
     expect(WIDGET_STATE.randomizer.parse({ names: ['a', 'b'] })).toEqual({ names: ['a', 'b'] })
   })
 
+  it('stickynotes rejects an unknown colour', () => {
+    expect(
+      WIDGET_STATE.stickynotes.parse({ notes: [{ id: 'a', text: 'hi', color: 'orange' }] }),
+    ).toBeUndefined()
+    expect(
+      WIDGET_STATE.stickynotes.parse({ notes: [{ id: 'a', text: 'hi', color: 'blue' }] }),
+    ).toEqual({ notes: [{ id: 'a', text: 'hi', color: 'blue' }] })
+  })
+
+  it('whiteboard rejects malformed strokes and accepts valid ones', () => {
+    expect(
+      WIDGET_STATE.whiteboard.parse({ strokes: [{ color: '#000', width: 0, points: [] }] }),
+    ).toBeUndefined() // width must be > 0
+    expect(
+      WIDGET_STATE.whiteboard.parse({ strokes: [{ color: '#000', width: 2, points: [[0.1, 0.2, 0.3]] }] }),
+    ).toBeUndefined() // point must be a 2-tuple
+    expect(
+      WIDGET_STATE.whiteboard.parse({ strokes: [{ color: '#245dcc', width: 4, points: [[0.1, 0.2], [0.3, 0.4]] }] }),
+    ).toEqual({ strokes: [{ color: '#245dcc', width: 4, points: [[0.1, 0.2], [0.3, 0.4]] }] })
+  })
+
   it('seating rejects a seat count that does not match rows*cols', () => {
     expect(
       WIDGET_STATE.seating.parse({ rows: 2, cols: 2, names: [], seats: [null, null, null] }),

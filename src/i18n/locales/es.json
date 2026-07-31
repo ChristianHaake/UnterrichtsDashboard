@@ -24,7 +24,34 @@
       "scoreboard": "Marcador",
       "hallpass": "Pase de pasillo",
       "seating": "Plano de aula",
-      "morningboard": "Panel matinal"
+      "morningboard": "Panel matinal",
+      "stickynotes": "Notas adhesivas",
+      "whiteboard": "Pizarra"
+    }
+  },
+  "whiteboard": {
+    "toolbar": "Herramientas de dibujo",
+    "colorLabel": "Color",
+    "color": "Color {{color}}",
+    "widthLabel": "Grosor del trazo",
+    "width": "Grosor del trazo {{width}}",
+    "undo": "Deshacer",
+    "clear": "Borrar",
+    "confirmClear": "¿Borrar toda la pizarra?",
+    "canvasLabel": "Lienzo de dibujo (a mano alzada con ratón, lápiz o dedo)"
+  },
+  "stickynotes": {
+    "add": "Añadir una nota",
+    "empty": "Aún no hay notas.",
+    "placeholder": "Nota …",
+    "noteLabel": "Nota {{number}}",
+    "colorLabel": "Color de la nota {{number}}",
+    "remove": "Quitar la nota {{number}}",
+    "colors": {
+      "yellow": "Amarillo",
+      "green": "Verde",
+      "blue": "Azul",
+      "pink": "Rosa"
     }
   },
   "morningboard": {

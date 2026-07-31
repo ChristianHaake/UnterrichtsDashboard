@@ -24,7 +24,34 @@
       "scoreboard": "Scorebord",
       "hallpass": "Gangpas",
       "seating": "Klasplattegrond",
-      "morningboard": "Ochtendbord"
+      "morningboard": "Ochtendbord",
+      "stickynotes": "Plaknotities",
+      "whiteboard": "Whiteboard"
+    }
+  },
+  "whiteboard": {
+    "toolbar": "Tekengereedschap",
+    "colorLabel": "Kleur",
+    "color": "Kleur {{color}}",
+    "widthLabel": "Lijndikte",
+    "width": "Lijndikte {{width}}",
+    "undo": "Ongedaan maken",
+    "clear": "Wissen",
+    "confirmClear": "Het hele canvas wissen?",
+    "canvasLabel": "Tekengebied (uit de vrije hand met muis, pen of vinger)"
+  },
+  "stickynotes": {
+    "add": "Notitie toevoegen",
+    "empty": "Nog geen notities.",
+    "placeholder": "Notitie …",
+    "noteLabel": "Notitie {{number}}",
+    "colorLabel": "Kleur voor notitie {{number}}",
+    "remove": "Notitie {{number}} verwijderen",
+    "colors": {
+      "yellow": "Geel",
+      "green": "Groen",
+      "blue": "Blauw",
+      "pink": "Roze"
     }
   },
   "morningboard": {

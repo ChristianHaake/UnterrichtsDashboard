@@ -24,7 +24,34 @@
       "scoreboard": "Punktetafel",
       "hallpass": "Flurpass",
       "seating": "Sitzplan",
-      "morningboard": "Morning Board"
+      "morningboard": "Morning Board",
+      "stickynotes": "Klebezettel",
+      "whiteboard": "Whiteboard"
+    }
+  },
+  "whiteboard": {
+    "toolbar": "Zeichenwerkzeuge",
+    "colorLabel": "Farbe",
+    "color": "Farbe {{color}}",
+    "widthLabel": "Strichstärke",
+    "width": "Strichstärke {{width}}",
+    "undo": "Rückgängig",
+    "clear": "Löschen",
+    "confirmClear": "Die gesamte Zeichenfläche löschen?",
+    "canvasLabel": "Zeichenfläche (Freihandzeichnen mit Maus, Stift oder Finger)"
+  },
+  "stickynotes": {
+    "add": "Zettel hinzufügen",
+    "empty": "Noch keine Zettel.",
+    "placeholder": "Notiz …",
+    "noteLabel": "Zettel {{number}}",
+    "colorLabel": "Farbe für Zettel {{number}}",
+    "remove": "Zettel {{number}} entfernen",
+    "colors": {
+      "yellow": "Gelb",
+      "green": "Grün",
+      "blue": "Blau",
+      "pink": "Rosa"
     }
   },
   "morningboard": {

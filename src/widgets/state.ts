@@ -1,5 +1,6 @@
 import type { WidgetKind } from './types'
 import { MAX_DIM, MIN_DIM } from '../domain/seating'
+import { clampRange, MATH_INSTRUMENTS, type MathInstrument } from '../domain/mathtools'
 
 export type SocialForm = 'silent' | 'whisper' | 'partner' | 'group'
 const SOCIAL_FORMS: readonly SocialForm[] = ['silent', 'whisper', 'partner', 'group']
@@ -70,6 +71,29 @@ export interface MorningBoardPersist {
   word: string
   weather: WeatherSnapshot | null
 }
+export type StickyColor = 'yellow' | 'green' | 'blue' | 'pink'
+export const STICKY_COLORS: readonly StickyColor[] = ['yellow', 'green', 'blue', 'pink']
+export interface StickyNote {
+  id: string
+  text: string
+  color: StickyColor
+}
+export interface StickyNotesPersist {
+  notes: StickyNote[]
+}
+export interface WhiteboardStroke {
+  color: string
+  width: number
+  /** Normalized [x, y] points in the range 0..1 so the drawing scales on resize. */
+  points: [number, number][]
+}
+export interface WhiteboardPersist {
+  strokes: WhiteboardStroke[]
+}
+export interface MathToolsPersist {
+  instrument: MathInstrument
+  range: number
+}
 
 export interface WidgetStateMap {
   timer: TimerPersist
@@ -82,6 +106,9 @@ export interface WidgetStateMap {
   hallpass: HallPassPersist
   seating: SeatingPersist
   morningboard: MorningBoardPersist
+  stickynotes: StickyNotesPersist
+  whiteboard: WhiteboardPersist
+  mathtools: MathToolsPersist
 }
 
 function isFiniteNumber(value: unknown): value is number {
@@ -286,6 +313,69 @@ export const WIDGET_STATE: { [K in WidgetKind]: WidgetStateSpec<WidgetStateMap[K
       }
 
       return { location: parsedLocation, word, weather: parsedWeather }
+    },
+  },
+  stickynotes: {
+    default: { notes: [] },
+    parse(input) {
+      if (!isRecord(input)) return undefined
+      const { notes } = input
+      if (!Array.isArray(notes)) return undefined
+      const parsed: StickyNote[] = []
+      for (const note of notes) {
+        if (
+          !isRecord(note) ||
+          typeof note.id !== 'string' ||
+          typeof note.text !== 'string' ||
+          typeof note.color !== 'string' ||
+          !STICKY_COLORS.includes(note.color as StickyColor)
+        ) {
+          return undefined
+        }
+        parsed.push({ id: note.id, text: note.text, color: note.color as StickyColor })
+      }
+      return { notes: parsed }
+    },
+  },
+  whiteboard: {
+    default: { strokes: [] },
+    parse(input) {
+      if (!isRecord(input)) return undefined
+      const { strokes } = input
+      if (!Array.isArray(strokes)) return undefined
+      const parsed: WhiteboardStroke[] = []
+      for (const stroke of strokes) {
+        if (
+          !isRecord(stroke) ||
+          typeof stroke.color !== 'string' ||
+          !isFiniteNumber(stroke.width) ||
+          stroke.width <= 0 ||
+          !Array.isArray(stroke.points)
+        ) {
+          return undefined
+        }
+        const points: [number, number][] = []
+        for (const point of stroke.points) {
+          if (!Array.isArray(point) || point.length !== 2 || !isFiniteNumber(point[0]) || !isFiniteNumber(point[1])) {
+            return undefined
+          }
+          points.push([point[0], point[1]])
+        }
+        parsed.push({ color: stroke.color, width: stroke.width, points })
+      }
+      return { strokes: parsed }
+    },
+  },
+  mathtools: {
+    default: { instrument: 'coordinate', range: 5 },
+    parse(input) {
+      if (!isRecord(input)) return undefined
+      const { instrument, range } = input
+      if (typeof instrument !== 'string' || !MATH_INSTRUMENTS.includes(instrument as MathInstrument)) {
+        return undefined
+      }
+      if (!isFiniteNumber(range)) return undefined
+      return { instrument: instrument as MathInstrument, range: clampRange(range) }
     },
   },
 }

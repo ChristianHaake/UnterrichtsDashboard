@@ -9,6 +9,9 @@ export type WidgetKind =
   | 'hallpass'
   | 'seating'
   | 'morningboard'
+  | 'stickynotes'
+  | 'whiteboard'
+  | 'mathtools'
 
 export const WIDGET_KINDS: readonly WidgetKind[] = [
   'timer',
@@ -21,6 +24,9 @@ export const WIDGET_KINDS: readonly WidgetKind[] = [
   'hallpass',
   'seating',
   'morningboard',
+  'stickynotes',
+  'whiteboard',
+  'mathtools',
 ]
 
 export interface WidgetInstance {

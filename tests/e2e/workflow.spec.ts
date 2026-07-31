@@ -62,6 +62,29 @@ test('morning board shows weather from the (mocked) weather API', async ({ page 
   await expect(page.getByText(/14 °C · Bewölkt/)).toBeVisible()
 })
 
+test('whiteboard records a drawn stroke and can be cleared', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('button', { name: 'Whiteboard hinzufügen' }).click()
+
+  const canvas = page.getByRole('img', { name: /Zeichenfläche/ })
+  await expect(canvas).toBeVisible()
+  const box = await canvas.boundingBox()
+  if (!box) throw new Error('canvas has no bounding box')
+
+  await page.mouse.move(box.x + 20, box.y + 20)
+  await page.mouse.down()
+  await page.mouse.move(box.x + 80, box.y + 60)
+  await page.mouse.move(box.x + 130, box.y + 40)
+  await page.mouse.up()
+
+  const undo = page.getByRole('button', { name: 'Rückgängig' })
+  await expect(undo).toBeEnabled()
+
+  page.once('dialog', (dialog) => dialog.accept())
+  await page.getByRole('button', { name: 'Löschen', exact: true }).click()
+  await expect(undo).toBeDisabled()
+})
+
 test('provides a keyboard alternative to drag for moving widgets', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('button', { name: 'Timer hinzufügen' }).click()

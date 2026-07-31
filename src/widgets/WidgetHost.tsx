@@ -28,6 +28,12 @@ const SeatingWidget = lazy(() =>
 const MorningBoardWidget = lazy(() =>
   import('./morningboard/MorningBoardWidget').then((m) => ({ default: m.MorningBoardWidget })),
 )
+const StickyNotesWidget = lazy(() =>
+  import('./stickynotes/StickyNotesWidget').then((m) => ({ default: m.StickyNotesWidget })),
+)
+const WhiteboardWidget = lazy(() =>
+  import('./whiteboard/WhiteboardWidget').then((m) => ({ default: m.WhiteboardWidget })),
+)
 
 interface WidgetHostProps {
   kind: WidgetKind
@@ -58,6 +64,10 @@ function renderWidget({ kind, state, onChange }: WidgetHostProps) {
       return <SeatingWidget state={state as WidgetStateMap['seating']} onChange={onChange} />
     case 'morningboard':
       return <MorningBoardWidget state={state as WidgetStateMap['morningboard']} onChange={onChange} />
+    case 'stickynotes':
+      return <StickyNotesWidget state={state as WidgetStateMap['stickynotes']} onChange={onChange} />
+    case 'whiteboard':
+      return <WhiteboardWidget state={state as WidgetStateMap['whiteboard']} onChange={onChange} />
   }
 }
 
