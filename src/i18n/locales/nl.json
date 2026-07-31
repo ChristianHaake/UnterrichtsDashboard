@@ -26,7 +26,17 @@
       "seating": "Klasplattegrond",
       "morningboard": "Ochtendbord",
       "stickynotes": "Plaknotities",
-      "whiteboard": "Whiteboard"
+      "whiteboard": "Whiteboard",
+      "mathtools": "Wiskunde-instrumenten"
+    }
+  },
+  "mathtools": {
+    "instrumentLabel": "Instrument",
+    "range": "Bereik",
+    "instruments": {
+      "coordinate": "Assenstelsel",
+      "protractor": "Geodriehoek",
+      "ruler": "Liniaal"
     }
   },
   "whiteboard": {

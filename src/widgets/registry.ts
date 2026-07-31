@@ -25,6 +25,7 @@ export const WIDGET_REGISTRY: Record<WidgetKind, WidgetDefinition> = {
   morningboard: { labelKey: 'widgets.kinds.morningboard', size: { w: 4, h: 6, minW: 3, minH: 4 } },
   stickynotes: { labelKey: 'widgets.kinds.stickynotes', size: { w: 4, h: 6, minW: 3, minH: 4 } },
   whiteboard: { labelKey: 'widgets.kinds.whiteboard', size: { w: 6, h: 7, minW: 4, minH: 5 } },
+  mathtools: { labelKey: 'widgets.kinds.mathtools', size: { w: 4, h: 7, minW: 3, minH: 5 } },
 }
 
 export const GRID_COLS = 12

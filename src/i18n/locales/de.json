@@ -26,7 +26,17 @@
       "seating": "Sitzplan",
       "morningboard": "Morning Board",
       "stickynotes": "Klebezettel",
-      "whiteboard": "Whiteboard"
+      "whiteboard": "Whiteboard",
+      "mathtools": "Mathe-Instrumente"
+    }
+  },
+  "mathtools": {
+    "instrumentLabel": "Instrument",
+    "range": "Bereich",
+    "instruments": {
+      "coordinate": "Koordinatensystem",
+      "protractor": "Geodreieck",
+      "ruler": "Lineal"
     }
   },
   "whiteboard": {

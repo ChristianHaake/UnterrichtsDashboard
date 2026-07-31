@@ -85,6 +85,15 @@ test('whiteboard records a drawn stroke and can be cleared', async ({ page }) =>
   await expect(undo).toBeDisabled()
 })
 
+test('math instruments switch the rendered SVG', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('button', { name: 'Mathe-Instrumente hinzufügen' }).click()
+
+  await expect(page.getByRole('img', { name: 'Koordinatensystem' })).toBeVisible()
+  await page.getByRole('button', { name: 'Geodreieck' }).click()
+  await expect(page.getByRole('img', { name: 'Geodreieck' })).toBeVisible()
+})
+
 test('provides a keyboard alternative to drag for moving widgets', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('button', { name: 'Timer hinzufügen' }).click()

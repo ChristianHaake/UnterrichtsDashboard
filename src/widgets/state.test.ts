@@ -58,6 +58,15 @@ describe('widget state parsers (untrusted import validation)', () => {
     ).toEqual({ notes: [{ id: 'a', text: 'hi', color: 'blue' }] })
   })
 
+  it('mathtools rejects unknown instruments and clamps the range', () => {
+    expect(WIDGET_STATE.mathtools.parse({ instrument: 'abacus', range: 5 })).toBeUndefined()
+    expect(WIDGET_STATE.mathtools.parse({ instrument: 'ruler', range: 'big' })).toBeUndefined()
+    expect(WIDGET_STATE.mathtools.parse({ instrument: 'coordinate', range: 99 })).toEqual({
+      instrument: 'coordinate',
+      range: 12,
+    })
+  })
+
   it('whiteboard rejects malformed strokes and accepts valid ones', () => {
     expect(
       WIDGET_STATE.whiteboard.parse({ strokes: [{ color: '#000', width: 0, points: [] }] }),

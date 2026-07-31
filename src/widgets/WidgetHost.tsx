@@ -34,6 +34,9 @@ const StickyNotesWidget = lazy(() =>
 const WhiteboardWidget = lazy(() =>
   import('./whiteboard/WhiteboardWidget').then((m) => ({ default: m.WhiteboardWidget })),
 )
+const MathToolsWidget = lazy(() =>
+  import('./mathtools/MathToolsWidget').then((m) => ({ default: m.MathToolsWidget })),
+)
 
 interface WidgetHostProps {
   kind: WidgetKind
@@ -68,6 +71,8 @@ function renderWidget({ kind, state, onChange }: WidgetHostProps) {
       return <StickyNotesWidget state={state as WidgetStateMap['stickynotes']} onChange={onChange} />
     case 'whiteboard':
       return <WhiteboardWidget state={state as WidgetStateMap['whiteboard']} onChange={onChange} />
+    case 'mathtools':
+      return <MathToolsWidget state={state as WidgetStateMap['mathtools']} onChange={onChange} />
   }
 }
 

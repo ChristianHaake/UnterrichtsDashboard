@@ -26,7 +26,17 @@
       "seating": "Plan de classe",
       "morningboard": "Tableau du matin",
       "stickynotes": "Notes autocollantes",
-      "whiteboard": "Tableau blanc"
+      "whiteboard": "Tableau blanc",
+      "mathtools": "Instruments de maths"
+    }
+  },
+  "mathtools": {
+    "instrumentLabel": "Instrument",
+    "range": "Plage",
+    "instruments": {
+      "coordinate": "Repère",
+      "protractor": "Rapporteur",
+      "ruler": "Règle"
     }
   },
   "whiteboard": {

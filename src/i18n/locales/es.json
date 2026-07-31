@@ -26,7 +26,17 @@
       "seating": "Plano de aula",
       "morningboard": "Panel matinal",
       "stickynotes": "Notas adhesivas",
-      "whiteboard": "Pizarra"
+      "whiteboard": "Pizarra",
+      "mathtools": "Instrumentos de mates"
+    }
+  },
+  "mathtools": {
+    "instrumentLabel": "Instrumento",
+    "range": "Rango",
+    "instruments": {
+      "coordinate": "Sistema de coordenadas",
+      "protractor": "Transportador",
+      "ruler": "Regla"
     }
   },
   "whiteboard": {
