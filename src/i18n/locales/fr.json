@@ -186,6 +186,23 @@
     "outLabel": "sorti depuis :",
     "empty": "Aucun nom pour l'instant."
   },
+  "palette": {
+    "add": "Ajouter une app",
+    "search": "Rechercher des apps …",
+    "noResults": "Aucun résultat.",
+    "categories": {
+      "time": "Temps",
+      "classroom": "Classe",
+      "creative": "Créatif",
+      "math": "Maths"
+    }
+  },
+  "canvas": {
+    "controls": "Vue",
+    "zoomIn": "Zoom avant",
+    "zoomOut": "Zoom arrière",
+    "resetView": "Réinitialiser la vue"
+  },
   "footer": {
     "legalNav": "Informations légales",
     "help": "Aide",

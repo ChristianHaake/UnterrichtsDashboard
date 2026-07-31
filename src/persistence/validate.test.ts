@@ -38,6 +38,21 @@ describe('parseDashboardDocument', () => {
     expect(parseDashboardDocument(doc)).toMatchObject({ ok: false, error: 'missing-schema-version' })
   })
 
+  it('migrates a v1 (grid-unit) document to v2 pixel coordinates', () => {
+    const v1 = {
+      schemaVersion: 1,
+      widgets: [{ id: 'w-0', kind: 'timer', state: { durationMs: 60000 } }],
+      layout: [{ i: 'w-0', x: 1, y: 2, w: 3, h: 4, minW: 2, minH: 3 }],
+    }
+    const result = parseDashboardDocument(v1)
+    expect(result.ok).toBe(true)
+    if (result.ok) {
+      expect(result.doc.schemaVersion).toBe(SCHEMA_VERSION)
+      const item = result.doc.layout[0]
+      expect(item).toEqual({ i: 'w-0', x: 96, y: 112, w: 272, h: 208 })
+    }
+  })
+
   it('rejects a future schema version cleanly', () => {
     expect(parseDashboardDocument({ ...validDoc(), schemaVersion: SCHEMA_VERSION + 1 })).toMatchObject({
       ok: false,

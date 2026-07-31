@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { addApp } from './helpers'
 
 // Fresh storage per test (Playwright isolates context), so IndexedDB starts empty.
 
@@ -6,7 +7,7 @@ test('adds a widget and persists it and its content across reload', async ({ pag
   await page.goto('/')
   await expect(page.getByText('Noch keine Widgets hinzugefügt.')).toBeVisible()
 
-  await page.getByRole('button', { name: 'Textfeld hinzufügen' }).click()
+  await addApp(page, 'Textfeld')
   const area = page.getByLabel('Textinhalt')
   await expect(area).toBeVisible()
   await area.fill('Aufgabe 3, Seite 42')
@@ -20,7 +21,7 @@ test('adds a widget and persists it and its content across reload', async ({ pag
 
 test('scoreboard score persists across reload', async ({ page }) => {
   await page.goto('/')
-  await page.getByRole('button', { name: 'Punktetafel hinzufügen' }).click()
+  await addApp(page, 'Punktetafel')
 
   await page.getByPlaceholder('Name').fill('Team A')
   await page.getByRole('button', { name: 'Hinzufügen', exact: true }).click()
@@ -54,7 +55,7 @@ test('morning board shows weather from the (mocked) weather API', async ({ page 
   )
 
   await page.goto('/')
-  await page.getByRole('button', { name: 'Morning Board hinzufügen' }).click()
+  await addApp(page, 'Morning Board')
   await page.getByPlaceholder('Stadt suchen …').fill('Hannover')
   await page.getByRole('button', { name: 'Suchen', exact: true }).click()
 
@@ -64,7 +65,7 @@ test('morning board shows weather from the (mocked) weather API', async ({ page 
 
 test('whiteboard records a drawn stroke and can be cleared', async ({ page }) => {
   await page.goto('/')
-  await page.getByRole('button', { name: 'Whiteboard hinzufügen' }).click()
+  await addApp(page, 'Whiteboard')
 
   const canvas = page.getByRole('img', { name: /Zeichenfläche/ })
   await expect(canvas).toBeVisible()
@@ -87,23 +88,44 @@ test('whiteboard records a drawn stroke and can be cleared', async ({ page }) =>
 
 test('math instruments switch the rendered SVG', async ({ page }) => {
   await page.goto('/')
-  await page.getByRole('button', { name: 'Mathe-Instrumente hinzufügen' }).click()
+  await addApp(page, 'Mathe-Instrumente')
 
   await expect(page.getByRole('img', { name: 'Koordinatensystem' })).toBeVisible()
   await page.getByRole('button', { name: 'Geodreieck' }).click()
   await expect(page.getByRole('img', { name: 'Geodreieck' })).toBeVisible()
 })
 
+test('app palette filters apps by search', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('button', { name: 'App hinzufügen' }).click()
+  await page.getByRole('searchbox', { name: 'Apps durchsuchen …' }).fill('white')
+
+  await expect(page.getByRole('button', { name: 'Whiteboard hinzufügen' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Timer hinzufügen' })).toHaveCount(0)
+
+  await page.getByRole('searchbox', { name: 'Apps durchsuchen …' }).fill('zzzz')
+  await expect(page.getByText('Keine Treffer.')).toBeVisible()
+})
+
+test('canvas zoom controls change and reset the zoom level', async ({ page }) => {
+  await page.goto('/')
+  await expect(page.getByText('100%')).toBeVisible()
+  await page.getByRole('button', { name: 'Vergrößern' }).click()
+  await expect(page.getByText('120%')).toBeVisible()
+  await page.getByRole('button', { name: 'Ansicht zurücksetzen' }).click()
+  await expect(page.getByText('100%')).toBeVisible()
+})
+
 test('provides a keyboard alternative to drag for moving widgets', async ({ page }) => {
   await page.goto('/')
-  await page.getByRole('button', { name: 'Timer hinzufügen' }).click()
+  await addApp(page, 'Timer')
   await expect(page.getByRole('button', { name: 'Timer nach rechts verschieben' })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Timer nach unten verschieben' })).toBeVisible()
 })
 
 test('reset clears the dashboard after confirmation', async ({ page }) => {
   await page.goto('/')
-  await page.getByRole('button', { name: 'Timer hinzufügen' }).click()
+  await addApp(page, 'Timer')
   await expect(page.getByRole('button', { name: 'Timer entfernen' })).toBeVisible()
 
   page.once('dialog', (dialog) => dialog.accept())

@@ -186,6 +186,23 @@
     "outLabel": "weg sinds:",
     "empty": "Nog geen namen."
   },
+  "palette": {
+    "add": "App toevoegen",
+    "search": "Apps zoeken …",
+    "noResults": "Geen resultaten.",
+    "categories": {
+      "time": "Tijd",
+      "classroom": "Klas",
+      "creative": "Creatief",
+      "math": "Wiskunde"
+    }
+  },
+  "canvas": {
+    "controls": "Weergave",
+    "zoomIn": "Inzoomen",
+    "zoomOut": "Uitzoomen",
+    "resetView": "Weergave herstellen"
+  },
   "footer": {
     "legalNav": "Juridische informatie",
     "help": "Help",

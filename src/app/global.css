@@ -103,21 +103,38 @@ input {
 /* Main */
 .app-main {
   flex: 1;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 1120px;
   margin: 0 auto;
   padding: 24px 20px;
+  min-height: 0;
 }
 
-.dashboard__title {
-  margin-top: 0;
+.dashboard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 14px;
+  min-height: 0;
 }
+.dashboard__title {
+  margin: 0;
+}
+/* Centered hint drawn over the (empty) canvas; never blocks panning. */
 .dashboard__empty {
-  padding: 40px 24px;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   text-align: center;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  pointer-events: none;
 }
 .dashboard__empty-hint {
   color: var(--text-muted);

@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState, type ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DashboardGrid, type Layout } from '../grid/DashboardGrid'
-import { bottomY, moveItem } from '../grid/layout'
+import { CanvasSurface, type ViewState } from '../canvas/CanvasSurface'
+import { dragItem, moveItem, nextPosition } from '../canvas/layout'
 import { WidgetFrame } from '../widgets/WidgetFrame'
 import { WidgetHost } from '../widgets/WidgetHost'
-import { GRID_COLS, WIDGET_REGISTRY } from '../widgets/registry'
+import { AppPalette } from '../widgets/AppPalette'
+import { MANIFESTS } from '../widgets/manifest'
 import { WIDGET_STATE } from '../widgets/state'
-import { WIDGET_KINDS, type MoveDirection, type WidgetInstance, type WidgetKind } from '../widgets/types'
-import { SCHEMA_VERSION, type DashboardDocument } from '../persistence/schema'
+import type { MoveDirection, WidgetInstance, WidgetKind } from '../widgets/types'
+import { SCHEMA_VERSION, type DashboardDocument, type LayoutItem } from '../persistence/schema'
 import { buildExportFilename, deserializeDocument, serializeDocument } from '../persistence/exportImport'
 import { clearDocument, loadDocument, saveDocument } from '../persistence/db'
 
@@ -17,8 +18,9 @@ export function Dashboard() {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const [widgets, setWidgets] = useState<WidgetInstance[]>([])
-  const [layout, setLayout] = useState<Layout[]>([])
+  const [layout, setLayout] = useState<LayoutItem[]>([])
   const [states, setStates] = useState<Record<string, unknown>>({})
+  const [view, setView] = useState<ViewState>({ x: 0, y: 0, zoom: 1 })
   const [hydrated, setHydrated] = useState(false)
   const [importError, setImportError] = useState<string | null>(null)
 
@@ -30,7 +32,7 @@ export function Dashboard() {
     return {
       schemaVersion: SCHEMA_VERSION,
       widgets: widgets.map((w) => ({ id: w.id, kind: w.kind, state: states[w.id] })),
-      layout: layout.map(({ i, x, y, w, h, minW, minH }) => ({ i, x, y, w, h, minW, minH })),
+      layout: layout.map(({ i, x, y, w, h }) => ({ i, x, y, w, h })),
     }
   }
 
@@ -45,7 +47,6 @@ export function Dashboard() {
     counter.current = Math.max(counter.current, maxIndex + 1)
   }
 
-  // Hydrate from IndexedDB once on mount.
   useEffect(() => {
     let cancelled = false
     loadDocument()
@@ -62,8 +63,6 @@ export function Dashboard() {
     }
   }, [])
 
-  // Autosave (debounced) after hydration so we never overwrite stored data with
-  // the initial empty state before it loads.
   useEffect(() => {
     if (!hydrated) return
     const handle = setTimeout(() => {
@@ -75,10 +74,11 @@ export function Dashboard() {
 
   function addWidget(kind: WidgetKind) {
     const id = `w-${counter.current++}`
-    const { w, h, minW, minH } = WIDGET_REGISTRY[kind].size
+    const { w, h } = MANIFESTS[kind].size
+    const { x, y } = nextPosition(widgets.length)
     setWidgets((current) => [...current, { id, kind }])
     setStates((current) => ({ ...current, [id]: structuredClone(WIDGET_STATE[kind].default) }))
-    setLayout((current) => [...current, { i: id, x: 0, y: bottomY(current), w, h, minW, minH }])
+    setLayout((current) => [...current, { i: id, x, y, w, h }])
   }
 
   function removeWidget(id: string) {
@@ -92,7 +92,11 @@ export function Dashboard() {
   }
 
   function move(id: string, direction: MoveDirection) {
-    setLayout((current) => moveItem(current, id, direction, GRID_COLS))
+    setLayout((current) => moveItem(current, id, direction))
+  }
+
+  function drag(id: string, clientDx: number, clientDy: number) {
+    setLayout((current) => dragItem(current, id, clientDx / view.zoom, clientDy / view.zoom))
   }
 
   function exportProject() {
@@ -107,7 +111,7 @@ export function Dashboard() {
 
   function onImportFile(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0]
-    event.target.value = '' // allow re-importing the same file
+    event.target.value = ''
     if (!file) return
     void file.text().then((text) => {
       const result = deserializeDocument(text)
@@ -165,34 +169,25 @@ export function Dashboard() {
         </p>
       )}
 
-      <div className="dashboard__toolbar" role="group" aria-label={t('widgets.toolbarLabel')}>
-        {WIDGET_KINDS.map((kind) => (
-          <button
-            key={kind}
-            type="button"
-            className="dashboard__add"
-            aria-label={t('widgets.add', { name: t(WIDGET_REGISTRY[kind].labelKey) })}
-            onClick={() => addWidget(kind)}
-          >
-            <span aria-hidden="true">＋ </span>
-            {t(WIDGET_REGISTRY[kind].labelKey)}
-          </button>
-        ))}
+      <div className="dashboard__toolbar">
+        <AppPalette onAdd={addWidget} />
       </div>
 
-      {widgets.length === 0 ? (
-        <div className="dashboard__empty">
-          <p>{t('dashboard.emptyTitle')}</p>
-          <p className="dashboard__empty-hint">{t('dashboard.emptyHint')}</p>
-        </div>
-      ) : (
-        <DashboardGrid layout={layout} onLayoutChange={setLayout}>
-          {widgets.map((widget) => (
-            <div key={widget.id}>
+      <CanvasSurface view={view} onViewChange={setView}>
+        {widgets.map((widget) => {
+          const item = layout.find((l) => l.i === widget.id)
+          if (!item) return null
+          return (
+            <div
+              key={widget.id}
+              className="canvas-item"
+              style={{ left: item.x, top: item.y, width: item.w, height: item.h }}
+            >
               <WidgetFrame
-                title={t(WIDGET_REGISTRY[widget.kind].labelKey)}
+                title={t(MANIFESTS[widget.kind].labelKey)}
                 onRemove={() => removeWidget(widget.id)}
                 onMove={(direction) => move(widget.id, direction)}
+                onDrag={(dx, dy) => drag(widget.id, dx, dy)}
               >
                 <WidgetHost
                   kind={widget.kind}
@@ -201,8 +196,15 @@ export function Dashboard() {
                 />
               </WidgetFrame>
             </div>
-          ))}
-        </DashboardGrid>
+          )
+        })}
+      </CanvasSurface>
+
+      {widgets.length === 0 && (
+        <div className="dashboard__empty" role="note">
+          <p>{t('dashboard.emptyTitle')}</p>
+          <p className="dashboard__empty-hint">{t('dashboard.emptyHint')}</p>
+        </div>
       )}
     </section>
   )

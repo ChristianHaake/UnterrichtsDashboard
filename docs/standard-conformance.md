@@ -47,9 +47,22 @@ runtime-validation, and schema-versioning rules.
 
 - Framework: React + Vite + TypeScript (strict). Justified by the many
   stateful, draggable widgets and the React visual baseline (SocialMediaCreator).
-- Grid: `react-grid-layout` (to be added in Phase 2).
-- Persistence: Dexie.js over IndexedDB (to be added in Phase 3); `localStorage`
-  only for small preferences (language under key `ud:lang`).
+- Layout: a custom **pan/zoom canvas** with free widget positioning, not a
+  grid. This is a deliberate deviation from SocialMediaCreator's grid/editor
+  shell, justified by the product identity (a classroom "digital Tafel" on
+  touch displays and beamers). The standard's shell (header, footer, legal
+  pages), persistence, validation, security, and accessibility rules are all
+  kept; only the work-area layout differs. `react-grid-layout` was removed.
+  Widgets remain discrete, focusable, and keyboard-movable (nudge buttons), and
+  zoom/reset controls are keyboard operable, so no accessibility regression.
+- App-module architecture: each canvas item is a self-contained "app" declared
+  by a manifest (`src/widgets/manifest.ts`): kind, label, category, default
+  size, and a lazily-loaded component. A generic host renders by manifest (no
+  per-kind switch), and a searchable, categorized palette places apps. Adding an
+  app = add a state parser (`WIDGET_STATE`), a kind (`WIDGET_KINDS`), and one
+  manifest line. A completeness test enforces one manifest + parser per kind.
+- Persistence: Dexie.js over IndexedDB; `localStorage` only for small
+  preferences (language under key `ud:lang`).
 - Content pages are German-only for now; the UI is multilingual (DE/EN/FR/ES/NL).
   A language note will be added if a legally authoritative translation diverges.
 - Production `_headers` CSP keeps `connect-src` tight: `'self'` plus exactly the

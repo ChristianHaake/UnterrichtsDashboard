@@ -186,6 +186,23 @@
     "outLabel": "fuera desde hace:",
     "empty": "Aún no hay nombres."
   },
+  "palette": {
+    "add": "Añadir app",
+    "search": "Buscar apps …",
+    "noResults": "Sin resultados.",
+    "categories": {
+      "time": "Tiempo",
+      "classroom": "Aula",
+      "creative": "Creativo",
+      "math": "Mates"
+    }
+  },
+  "canvas": {
+    "controls": "Vista",
+    "zoomIn": "Acercar",
+    "zoomOut": "Alejar",
+    "resetView": "Restablecer la vista"
+  },
   "footer": {
     "legalNav": "Información legal",
     "help": "Ayuda",

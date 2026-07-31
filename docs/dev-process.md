@@ -11,7 +11,7 @@ build process. Conforms to the
 | Concern | Decision | Rationale |
 | --- | --- | --- |
 | Framework | **React + Vite + TypeScript (strict)** | Many stateful, draggable widgets; standard's visual baseline (SocialMediaCreator) is React; strongest ecosystem for grid, DnD, a11y, testing. |
-| Grid layout | **react-grid-layout** | Mature, purpose-built for draggable/resizable widget dashboards; JSON-serializable layout. This is the core interaction — library maturity is decisive. |
+| Work-area layout | **Custom pan/zoom canvas** | Free widget positioning on a bounded, pannable, zoomable surface (world-pixel coordinates). Chosen over a grid to match the classroom "digital Tafel" identity on touch displays; documented as a standard deviation. `react-grid-layout` was removed. |
 | Persistence | **Dexie.js** over IndexedDB | Standard-endorsed IndexedDB wrapper for blobs and structured data. |
 | Small prefs | **`localStorage`** (namespaced) | Language, theme — small text config only. |
 | Unit/logic tests | **Vitest** | Vite-native. |

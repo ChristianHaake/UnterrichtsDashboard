@@ -186,6 +186,23 @@
     "outLabel": "unterwegs:",
     "empty": "Noch keine Namen."
   },
+  "palette": {
+    "add": "App hinzufügen",
+    "search": "Apps durchsuchen …",
+    "noResults": "Keine Treffer.",
+    "categories": {
+      "time": "Zeit",
+      "classroom": "Klassenraum",
+      "creative": "Kreativ",
+      "math": "Mathe"
+    }
+  },
+  "canvas": {
+    "controls": "Ansicht",
+    "zoomIn": "Vergrößern",
+    "zoomOut": "Verkleinern",
+    "resetView": "Ansicht zurücksetzen"
+  },
   "footer": {
     "legalNav": "Rechtliche Hinweise",
     "help": "Hilfe",

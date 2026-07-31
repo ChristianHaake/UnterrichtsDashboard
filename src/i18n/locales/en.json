@@ -186,6 +186,23 @@
     "outLabel": "out for:",
     "empty": "No names yet."
   },
+  "palette": {
+    "add": "Add app",
+    "search": "Search apps …",
+    "noResults": "No matches.",
+    "categories": {
+      "time": "Time",
+      "classroom": "Classroom",
+      "creative": "Creative",
+      "math": "Maths"
+    }
+  },
+  "canvas": {
+    "controls": "View",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "resetView": "Reset view"
+  },
   "footer": {
     "legalNav": "Legal information",
     "help": "Help",

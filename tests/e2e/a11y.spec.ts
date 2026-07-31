@@ -1,13 +1,14 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test } from '@playwright/test'
+import { addApp } from './helpers'
 
 const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']
 
 test('dashboard has no serious or critical accessibility violations', async ({ page }) => {
   await page.goto('/')
   // Populate the workspace so widgets are included in the scan.
-  await page.getByRole('button', { name: 'Timer hinzufügen' }).click()
-  await page.getByRole('button', { name: 'Unterrichtsphasen hinzufügen' }).click()
+  await addApp(page, 'Timer')
+  await addApp(page, 'Unterrichtsphasen')
 
   const results = await new AxeBuilder({ page }).withTags(WCAG_TAGS).analyze()
   const serious = results.violations.filter(
