@@ -1,7 +1,13 @@
 import { WIDGET_KINDS, type WidgetKind } from '../widgets/types'
 import { WIDGET_STATE } from '../widgets/state'
 import { migrateToCurrent } from './migrate'
-import { SCHEMA_VERSION, type DashboardDocument, type LayoutItem, type PersistedWidget } from './schema'
+import {
+  SCHEMA_VERSION,
+  type CanvasView,
+  type DashboardDocument,
+  type LayoutItem,
+  type PersistedWidget,
+} from './schema'
 
 export type ParseResult =
   | { ok: true; doc: DashboardDocument }
@@ -83,5 +89,21 @@ export function parseDashboardDocument(input: unknown): ParseResult {
     layout.push(item)
   }
 
-  return { ok: true, doc: { schemaVersion: SCHEMA_VERSION, widgets, layout } }
+  let view: CanvasView | undefined
+  if (isRecord(source.view)) {
+    const { x, y, zoom } = source.view
+    if (
+      typeof x === 'number' &&
+      Number.isFinite(x) &&
+      typeof y === 'number' &&
+      Number.isFinite(y) &&
+      typeof zoom === 'number' &&
+      Number.isFinite(zoom) &&
+      zoom > 0
+    ) {
+      view = { x, y, zoom }
+    }
+  }
+
+  return { ok: true, doc: { schemaVersion: SCHEMA_VERSION, widgets, layout, ...(view ? { view } : {}) } }
 }

@@ -116,6 +116,17 @@ test('canvas zoom controls change and reset the zoom level', async ({ page }) =>
   await expect(page.getByText('100%')).toBeVisible()
 })
 
+test('canvas view (zoom) persists across reload', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('button', { name: 'Vergrößern' }).click()
+  await expect(page.getByText('120%')).toBeVisible()
+
+  await page.waitForTimeout(700)
+  await page.reload()
+
+  await expect(page.getByText('120%')).toBeVisible()
+})
+
 test('provides a keyboard alternative to drag for moving widgets', async ({ page }) => {
   await page.goto('/')
   await addApp(page, 'Timer')

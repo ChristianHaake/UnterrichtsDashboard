@@ -1,4 +1,4 @@
-import { useRef, useState, type KeyboardEvent } from 'react'
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { appsByCategory, MANIFESTS } from './manifest'
 import type { WidgetKind } from './types'
@@ -12,6 +12,20 @@ export function AppPalette({ onAdd }: AppPaletteProps) {
   const [open, setOpen] = useState(false)
   const [query, setQuery] = useState('')
   const toggleRef = useRef<HTMLButtonElement>(null)
+  const rootRef = useRef<HTMLDivElement>(null)
+
+  // Close when a pointer press lands outside the palette.
+  useEffect(() => {
+    if (!open) return
+    function onDocPointerDown(event: PointerEvent) {
+      if (rootRef.current && !rootRef.current.contains(event.target as Node)) {
+        setOpen(false)
+        setQuery('')
+      }
+    }
+    document.addEventListener('pointerdown', onDocPointerDown)
+    return () => document.removeEventListener('pointerdown', onDocPointerDown)
+  }, [open])
 
   const q = query.trim().toLowerCase()
   const groups = appsByCategory()
@@ -37,7 +51,7 @@ export function AppPalette({ onAdd }: AppPaletteProps) {
   }
 
   return (
-    <div className="palette">
+    <div className="palette" ref={rootRef}>
       <button
         ref={toggleRef}
         type="button"

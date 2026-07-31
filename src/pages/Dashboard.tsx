@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CanvasSurface, type ViewState } from '../canvas/CanvasSurface'
-import { dragItem, moveItem, nextPosition } from '../canvas/layout'
+import { clampZoom, dragItem, moveItem, nextPosition } from '../canvas/layout'
 import { WidgetFrame } from '../widgets/WidgetFrame'
 import { WidgetHost } from '../widgets/WidgetHost'
 import { AppPalette } from '../widgets/AppPalette'
@@ -33,6 +33,7 @@ export function Dashboard() {
       schemaVersion: SCHEMA_VERSION,
       widgets: widgets.map((w) => ({ id: w.id, kind: w.kind, state: states[w.id] })),
       layout: layout.map(({ i, x, y, w, h }) => ({ i, x, y, w, h })),
+      view,
     }
   }
 
@@ -40,6 +41,9 @@ export function Dashboard() {
     setWidgets(doc.widgets.map((w) => ({ id: w.id, kind: w.kind })))
     setStates(Object.fromEntries(doc.widgets.map((w) => [w.id, w.state])))
     setLayout(doc.layout.map((item) => ({ ...item })))
+    if (doc.view) {
+      setView({ x: doc.view.x, y: doc.view.y, zoom: clampZoom(doc.view.zoom) })
+    }
     const maxIndex = doc.widgets.reduce((max, w) => {
       const match = /^w-(\d+)$/.exec(w.id)
       return match ? Math.max(max, Number(match[1])) : max
@@ -70,7 +74,7 @@ export function Dashboard() {
     }, 400)
     return () => clearTimeout(handle)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [widgets, layout, states, hydrated])
+  }, [widgets, layout, states, view, hydrated])
 
   function addWidget(kind: WidgetKind) {
     const id = `w-${counter.current++}`
@@ -134,6 +138,7 @@ export function Dashboard() {
     setWidgets([])
     setLayout([])
     setStates({})
+    setView({ x: 0, y: 0, zoom: 1 })
     setImportError(null)
     void clearDocument()
   }

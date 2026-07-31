@@ -26,6 +26,16 @@ describe('parseDashboardDocument', () => {
     }
   })
 
+  it('accepts an optional canvas view and drops a malformed one', () => {
+    const good = parseDashboardDocument({ ...validDoc(), view: { x: 10, y: -20, zoom: 1.5 } })
+    expect(good.ok).toBe(true)
+    if (good.ok) expect(good.doc.view).toEqual({ x: 10, y: -20, zoom: 1.5 })
+
+    const bad = parseDashboardDocument({ ...validDoc(), view: { x: 'a', y: 0, zoom: 1 } })
+    expect(bad.ok).toBe(true)
+    if (bad.ok) expect(bad.doc.view).toBeUndefined()
+  })
+
   it('rejects non-objects', () => {
     expect(parseDashboardDocument(null).ok).toBe(false)
     expect(parseDashboardDocument('nope').ok).toBe(false)

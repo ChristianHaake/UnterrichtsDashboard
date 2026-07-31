@@ -21,10 +21,19 @@ export interface PersistedWidget {
   state: unknown
 }
 
+/** Canvas pan/zoom. Optional and non-critical: an invalid view is dropped, not
+ * rejected, so a bad viewport never blocks loading a valid dashboard. */
+export interface CanvasView {
+  x: number
+  y: number
+  zoom: number
+}
+
 export interface DashboardDocument {
   schemaVersion: number
   widgets: PersistedWidget[]
   layout: LayoutItem[]
+  view?: CanvasView
 }
 
 export function emptyDocument(): DashboardDocument {
