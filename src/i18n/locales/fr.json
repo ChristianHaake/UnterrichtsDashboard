@@ -7,8 +7,12 @@
   "dashboard": {
     "regionLabel": "Espace de travail du tableau de bord",
     "title": "Tableau de bord",
-    "emptyTitle": "Aucun widget ajouté pour l'instant.",
-    "emptyHint": "Ajoutez un widget ci-dessus pour commencer."
+    "emptyTitle": "Aucune app pour l'instant.",
+    "emptyHint": "Ajoutez une app ci-dessus pour commencer."
+  },
+  "present": {
+    "enter": "Présenter",
+    "exit": "Quitter la vue"
   },
   "widgets": {
     "toolbarLabel": "Ajouter un widget",
@@ -132,8 +136,8 @@
   },
   "project": {
     "groupLabel": "Actions du projet",
-    "export": "Exporter la disposition",
-    "import": "Importer la disposition",
+    "export": "Enregistrer",
+    "import": "Ouvrir",
     "reset": "Réinitialiser",
     "importError": "Échec de l'import : {{reason}}",
     "confirmReplace": "Remplacer le tableau de bord actuel par le fichier importé ?",

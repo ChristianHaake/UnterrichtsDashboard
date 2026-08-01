@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { LayoutItem } from '../persistence/schema'
-import { CANVAS_SIZE, clampZoom, dragItem, moveItem, nextPosition, NUDGE_STEP } from './layout'
+import { CANVAS_SIZE, clampZoom, dragItem, findSlot, moveItem, NUDGE_STEP } from './layout'
 
 const base: LayoutItem[] = [
   { i: 'a', x: 100, y: 100, w: 200, h: 150 },
@@ -46,10 +46,19 @@ describe('clampZoom', () => {
   })
 })
 
-describe('nextPosition', () => {
-  it('cascades and wraps every 8 widgets', () => {
-    expect(nextPosition(0)).toEqual({ x: 40, y: 40 })
-    expect(nextPosition(8)).toEqual({ x: 40, y: 40 })
-    expect(nextPosition(1).x).toBeGreaterThan(40)
+describe('findSlot', () => {
+  it('returns the origin when it is free', () => {
+    expect(findSlot([], 200, 150, 100, 100)).toEqual({ x: 100, y: 100 })
+  })
+  it('cascades past an item occupying the origin', () => {
+    const occupied: LayoutItem[] = [{ i: 'a', x: 100, y: 100, w: 200, h: 150 }]
+    const slot = findSlot(occupied, 200, 150, 100, 100)
+    expect(slot.x).toBeGreaterThan(100)
+    expect(slot.y).toBeGreaterThan(100)
+  })
+  it('clamps the result to the canvas bounds', () => {
+    const slot = findSlot([], 200, 150, CANVAS_SIZE + 999, CANVAS_SIZE + 999)
+    expect(slot.x).toBe(CANVAS_SIZE - 200)
+    expect(slot.y).toBe(CANVAS_SIZE - 150)
   })
 })

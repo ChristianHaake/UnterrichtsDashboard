@@ -7,8 +7,12 @@
   "dashboard": {
     "regionLabel": "Espacio de trabajo del panel",
     "title": "Panel",
-    "emptyTitle": "Aún no se han añadido widgets.",
-    "emptyHint": "Añade un widget arriba para empezar."
+    "emptyTitle": "Aún no hay apps.",
+    "emptyHint": "Añade una app arriba para empezar."
+  },
+  "present": {
+    "enter": "Presentar",
+    "exit": "Salir de la vista"
   },
   "widgets": {
     "toolbarLabel": "Añadir un widget",
@@ -132,8 +136,8 @@
   },
   "project": {
     "groupLabel": "Acciones del proyecto",
-    "export": "Exportar diseño",
-    "import": "Importar diseño",
+    "export": "Guardar",
+    "import": "Abrir",
     "reset": "Restablecer",
     "importError": "Error de importación: {{reason}}",
     "confirmReplace": "¿Reemplazar el panel actual con el archivo importado?",

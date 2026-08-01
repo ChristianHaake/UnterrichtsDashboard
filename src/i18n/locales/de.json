@@ -7,8 +7,12 @@
   "dashboard": {
     "regionLabel": "Dashboard-Arbeitsfläche",
     "title": "Dashboard",
-    "emptyTitle": "Noch keine Widgets hinzugefügt.",
-    "emptyHint": "Füge oben ein Widget hinzu, um zu beginnen."
+    "emptyTitle": "Noch keine Apps.",
+    "emptyHint": "Füge oben eine App hinzu, um zu beginnen."
+  },
+  "present": {
+    "enter": "Präsentation",
+    "exit": "Ansicht verlassen"
   },
   "widgets": {
     "toolbarLabel": "Widget hinzufügen",
@@ -132,8 +136,8 @@
   },
   "project": {
     "groupLabel": "Projektaktionen",
-    "export": "Layout exportieren",
-    "import": "Layout importieren",
+    "export": "Sichern",
+    "import": "Öffnen",
     "reset": "Zurücksetzen",
     "importError": "Import fehlgeschlagen: {{reason}}",
     "confirmReplace": "Aktuelles Dashboard durch die importierte Datei ersetzen?",

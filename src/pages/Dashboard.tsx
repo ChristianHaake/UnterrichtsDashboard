@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CanvasSurface, type ViewState } from '../canvas/CanvasSurface'
-import { clampZoom, dragItem, moveItem, nextPosition } from '../canvas/layout'
+import { clampZoom, dragItem, findSlot, moveItem } from '../canvas/layout'
 import { WidgetFrame } from '../widgets/WidgetFrame'
 import { WidgetHost } from '../widgets/WidgetHost'
 import { AppPalette } from '../widgets/AppPalette'
@@ -29,6 +29,8 @@ export function Dashboard() {
   const widgetCounter = useRef(0)
   const boardCounter = useRef(1)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const viewportRef = useRef<HTMLDivElement>(null)
+  const [present, setPresent] = useState(false)
 
   const [boards, setBoards] = useState<BoardUI[]>(() => [
     { id: 'b-0', name: t('board.name', { number: 1 }), widgets: [], layout: [], states: {}, view: DEFAULT_VIEW },
@@ -111,12 +113,48 @@ export function Dashboard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [boards, activeId, hydrated])
 
+  // Present mode: hide all chrome for a calm beamer view.
+  useEffect(() => {
+    document.body.classList.toggle('is-present', present)
+    return () => document.body.classList.remove('is-present')
+  }, [present])
+
+  useEffect(() => {
+    if (!present) return
+    function onKey(event: KeyboardEvent) {
+      if (event.key === 'Escape') setPresent(false)
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [present])
+
+  function togglePresent() {
+    const next = !present
+    setPresent(next)
+    // Fullscreen is a best-effort enhancement; ignore rejections (e.g. headless).
+    try {
+      if (next && !document.fullscreenElement) {
+        document.documentElement.requestFullscreen?.()?.catch(() => undefined)
+      } else if (!next && document.fullscreenElement) {
+        document.exitFullscreen?.()?.catch(() => undefined)
+      }
+    } catch {
+      // requestFullscreen is unavailable.
+    }
+  }
+
   // Widget operations act on the active board.
   function addWidget(kind: WidgetKind) {
     const id = `w-${widgetCounter.current++}`
     const { w, h } = MANIFESTS[kind].size
+    // Drop the app into the centre of what the teacher is currently looking at,
+    // finding a free slot so apps never land stacked on top of each other.
+    const rect = viewportRef.current?.getBoundingClientRect()
+    const zoom = active.view.zoom
+    const originX = rect ? (rect.width / 2 - active.view.x) / zoom - w / 2 : 60
+    const originY = rect ? (rect.height / 2 - active.view.y) / zoom - h / 2 : 60
     updateActive((b) => {
-      const { x, y } = nextPosition(b.widgets.length)
+      const { x, y } = findSlot(b.layout, w, h, originX, originY)
       return {
         ...b,
         widgets: [...b.widgets, { id, kind }],
@@ -226,9 +264,21 @@ export function Dashboard() {
 
   return (
     <section className="dashboard" aria-label={t('dashboard.regionLabel')}>
-      <div className="dashboard__head">
-        <h1 className="dashboard__title">{t('dashboard.title')}</h1>
-        <div className="dashboard__project" role="group" aria-label={t('project.groupLabel')}>
+      <h1 className="visually-hidden">{t('dashboard.title')}</h1>
+
+      <div className="dashboard__toolbar">
+        <div className="dashboard__toolbar-left">
+          <AppPalette onAdd={addWidget} />
+          <BoardTabs
+            boards={boards.map((b) => ({ id: b.id, name: b.name }))}
+            activeId={activeId}
+            onSwitch={setActiveId}
+            onAdd={addBoard}
+            onRename={renameBoard}
+            onRemove={removeBoard}
+          />
+        </div>
+        <div className="dashboard__actions" role="group" aria-label={t('project.groupLabel')}>
           <button type="button" onClick={exportProject}>
             {t('project.export')}
           </button>
@@ -243,22 +293,13 @@ export function Dashboard() {
             aria-label={t('project.import')}
             onChange={onImportFile}
           />
+          <button type="button" className="dashboard__present" onClick={togglePresent}>
+            {t('present.enter')}
+          </button>
           <button type="button" className="dashboard__reset" onClick={resetProject}>
             {t('project.reset')}
           </button>
         </div>
-      </div>
-
-      <div className="dashboard__bars">
-        <AppPalette onAdd={addWidget} />
-        <BoardTabs
-          boards={boards.map((b) => ({ id: b.id, name: b.name }))}
-          activeId={activeId}
-          onSwitch={setActiveId}
-          onAdd={addBoard}
-          onRename={renameBoard}
-          onRemove={removeBoard}
-        />
       </div>
 
       {importError && (
@@ -267,7 +308,7 @@ export function Dashboard() {
         </p>
       )}
 
-      <CanvasSurface view={active.view} onViewChange={setView}>
+      <CanvasSurface view={active.view} onViewChange={setView} viewportRef={viewportRef}>
         {active.widgets.map((widget) => {
           const item = active.layout.find((l) => l.i === widget.id)
           if (!item) return null
@@ -299,6 +340,12 @@ export function Dashboard() {
           <p>{t('dashboard.emptyTitle')}</p>
           <p className="dashboard__empty-hint">{t('dashboard.emptyHint')}</p>
         </div>
+      )}
+
+      {present && (
+        <button type="button" className="present-exit" onClick={togglePresent}>
+          {t('present.exit')}
+        </button>
       )}
     </section>
   )

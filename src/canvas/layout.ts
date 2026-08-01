@@ -47,8 +47,32 @@ export function moveItem(
   return dragItem(layout, id, dx, dy)
 }
 
-/** Cascade newly added widgets so they do not stack exactly. */
-export function nextPosition(count: number): { x: number; y: number } {
-  const offset = (count % 8) * 28
-  return { x: 40 + offset, y: 40 + offset }
+function rectsOverlap(
+  a: { x: number; y: number; w: number; h: number },
+  b: { x: number; y: number; w: number; h: number },
+  gap = 8,
+): boolean {
+  return a.x < b.x + b.w + gap && a.x + a.w + gap > b.x && a.y < b.y + b.h + gap && a.y + a.h + gap > b.y
+}
+
+/**
+ * Find a placement of size w×h near (originX, originY) that does not overlap any
+ * existing item, cascading diagonally. Clamped to the canvas. Falls back to the
+ * origin if no free slot is found within `tries`.
+ */
+export function findSlot(
+  layout: LayoutItem[],
+  w: number,
+  h: number,
+  originX: number,
+  originY: number,
+  step = 40,
+  tries = 60,
+): { x: number; y: number } {
+  for (let i = 0; i < tries; i++) {
+    const [x, y] = clampPosition(originX + i * step, originY + i * step, w, h)
+    if (!layout.some((item) => rectsOverlap({ x, y, w, h }, item))) return { x, y }
+  }
+  const [x, y] = clampPosition(originX, originY, w, h)
+  return { x, y }
 }

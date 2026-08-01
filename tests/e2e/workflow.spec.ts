@@ -5,7 +5,7 @@ import { addApp } from './helpers'
 
 test('adds a widget and persists it and its content across reload', async ({ page }) => {
   await page.goto('/')
-  await expect(page.getByText('Noch keine Widgets hinzugefügt.')).toBeVisible()
+  await expect(page.getByText('Noch keine Apps.')).toBeVisible()
 
   await addApp(page, 'Textfeld')
   const area = page.getByLabel('Textinhalt')
@@ -107,6 +107,19 @@ test('app palette filters apps by search', async ({ page }) => {
   await expect(page.getByText('Keine Treffer.')).toBeVisible()
 })
 
+test('present mode hides the chrome and can be exited', async ({ page }) => {
+  await page.goto('/')
+  await expect(page.getByRole('button', { name: 'App hinzufügen' })).toBeVisible()
+
+  await page.getByRole('button', { name: 'Präsentation' }).click()
+  await expect(page.getByRole('button', { name: 'App hinzufügen' })).toBeHidden()
+  const exit = page.getByRole('button', { name: 'Ansicht verlassen' })
+  await expect(exit).toBeVisible()
+
+  await exit.click()
+  await expect(page.getByRole('button', { name: 'App hinzufügen' })).toBeVisible()
+})
+
 test('canvas zoom controls change and reset the zoom level', async ({ page }) => {
   await page.goto('/')
   await expect(page.getByText('100%')).toBeVisible()
@@ -123,7 +136,7 @@ test('boards isolate widgets and persist across reload', async ({ page }) => {
 
   // New board is empty and does not show board 1's widgets.
   await page.getByRole('button', { name: 'Neue Tafel' }).click()
-  await expect(page.getByText('Noch keine Widgets hinzugefügt.')).toBeVisible()
+  await expect(page.getByText('Noch keine Apps.')).toBeVisible()
   await expect(page.getByRole('button', { name: 'Timer entfernen' })).toHaveCount(0)
 
   // Switching back shows board 1's widget again.
@@ -166,7 +179,7 @@ test('reset clears the dashboard after confirmation', async ({ page }) => {
     .getByRole('button', { name: 'Zurücksetzen' })
     .click()
 
-  await expect(page.getByText('Noch keine Widgets hinzugefügt.')).toBeVisible()
+  await expect(page.getByText('Noch keine Apps.')).toBeVisible()
 })
 
 test('a failed import shows an error and preserves current state', async ({ page }) => {
@@ -179,5 +192,5 @@ test('a failed import shows an error and preserves current state', async ({ page
 
   await expect(page.getByRole('alert')).toContainText('Import fehlgeschlagen')
   // Current (empty) state is preserved; still on the dashboard.
-  await expect(page.getByText('Noch keine Widgets hinzugefügt.')).toBeVisible()
+  await expect(page.getByText('Noch keine Apps.')).toBeVisible()
 })

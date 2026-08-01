@@ -7,8 +7,12 @@
   "dashboard": {
     "regionLabel": "Dashboard-werkruimte",
     "title": "Dashboard",
-    "emptyTitle": "Nog geen widgets toegevoegd.",
-    "emptyHint": "Voeg hierboven een widget toe om te beginnen."
+    "emptyTitle": "Nog geen apps.",
+    "emptyHint": "Voeg hierboven een app toe om te beginnen."
+  },
+  "present": {
+    "enter": "Presenteren",
+    "exit": "Weergave sluiten"
   },
   "widgets": {
     "toolbarLabel": "Widget toevoegen",
@@ -132,8 +136,8 @@
   },
   "project": {
     "groupLabel": "Projectacties",
-    "export": "Lay-out exporteren",
-    "import": "Lay-out importeren",
+    "export": "Opslaan",
+    "import": "Openen",
     "reset": "Opnieuw instellen",
     "importError": "Import mislukt: {{reason}}",
     "confirmReplace": "Het huidige dashboard vervangen door het geïmporteerde bestand?",

@@ -7,8 +7,12 @@
   "dashboard": {
     "regionLabel": "Dashboard workspace",
     "title": "Dashboard",
-    "emptyTitle": "No widgets added yet.",
-    "emptyHint": "Add a widget above to get started."
+    "emptyTitle": "No apps yet.",
+    "emptyHint": "Add an app above to get started."
+  },
+  "present": {
+    "enter": "Present",
+    "exit": "Exit view"
   },
   "widgets": {
     "toolbarLabel": "Add a widget",
@@ -132,8 +136,8 @@
   },
   "project": {
     "groupLabel": "Project actions",
-    "export": "Export layout",
-    "import": "Import layout",
+    "export": "Save",
+    "import": "Open",
     "reset": "Reset",
     "importError": "Import failed: {{reason}}",
     "confirmReplace": "Replace the current dashboard with the imported file?",

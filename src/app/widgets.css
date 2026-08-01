@@ -43,13 +43,77 @@
   border: 0;
 }
 
-/* Top bars: palette + board tabs */
-.dashboard__bars {
+/* Top toolbar: palette + tabs (left), project actions (right) */
+.dashboard__toolbar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 10px 16px;
+}
+.dashboard__toolbar-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+.dashboard__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.dashboard__actions button {
+  padding: 8px 12px;
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.dashboard__actions button:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.dashboard__present {
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  font-weight: 600;
+}
+
+/* Quiet widget headers: controls fade in on hover/focus (still touch-visible) */
+.widget-frame__controls {
+  opacity: 0.4;
+  transition: opacity 0.12s ease;
+}
+.widget-frame:hover .widget-frame__controls,
+.widget-frame:focus-within .widget-frame__controls {
+  opacity: 1;
+}
+
+/* Present mode: hide all chrome for a calm beamer view */
+body.is-present .app-header,
+body.is-present .app-footer,
+body.is-present .dashboard__toolbar {
+  display: none;
+}
+body.is-present .app-main {
+  padding: 0;
+  max-width: none;
+}
+.present-exit {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 100;
+  padding: 8px 14px;
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
 }
 
 /* Board tabs */

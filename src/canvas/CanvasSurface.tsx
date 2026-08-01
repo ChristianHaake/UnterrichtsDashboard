@@ -1,4 +1,10 @@
-import { useRef, type PointerEvent as ReactPointerEvent, type ReactNode, type WheelEvent } from 'react'
+import {
+  useRef,
+  type PointerEvent as ReactPointerEvent,
+  type ReactNode,
+  type RefObject,
+  type WheelEvent,
+} from 'react'
 import { useTranslation } from 'react-i18next'
 import { CANVAS_SIZE, clampZoom } from './layout'
 
@@ -11,12 +17,14 @@ export interface ViewState {
 interface CanvasSurfaceProps {
   view: ViewState
   onViewChange: (view: ViewState) => void
+  viewportRef?: RefObject<HTMLDivElement | null>
   children: ReactNode
 }
 
-export function CanvasSurface({ view, onViewChange, children }: CanvasSurfaceProps) {
+export function CanvasSurface({ view, onViewChange, viewportRef: externalRef, children }: CanvasSurfaceProps) {
   const { t } = useTranslation()
-  const viewportRef = useRef<HTMLDivElement>(null)
+  const internalRef = useRef<HTMLDivElement>(null)
+  const viewportRef = externalRef ?? internalRef
   const pointers = useRef<Map<number, { x: number; y: number }>>(new Map())
   const panRef = useRef<{ id: number; startX: number; startY: number; panX: number; panY: number } | null>(null)
   const pinchRef = useRef<{ dist: number; zoom: number } | null>(null)
