@@ -27,7 +27,21 @@
       "morningboard": "Panel matinal",
       "stickynotes": "Notas adhesivas",
       "whiteboard": "Pizarra",
-      "mathtools": "Instrumentos de mates"
+      "mathtools": "Instrumentos de mates",
+      "noisemeter": "Medidor de ruido"
+    }
+  },
+  "noise": {
+    "start": "Iniciar micrófono",
+    "stop": "Detener micrófono",
+    "threshold": "Umbral",
+    "idle": "Listo",
+    "denied": "Sin acceso al micrófono.",
+    "note": "Solo local: sin grabación ni transmisión. La fiabilidad depende del dispositivo.",
+    "states": {
+      "quiet": "Silencio",
+      "ok": "Correcto",
+      "loud": "Demasiado ruido"
     }
   },
   "mathtools": {

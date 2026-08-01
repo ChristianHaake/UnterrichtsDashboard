@@ -67,6 +67,13 @@ describe('widget state parsers (untrusted import validation)', () => {
     })
   })
 
+  it('noisemeter clamps the threshold to [0, 1] and rejects non-numbers', () => {
+    expect(WIDGET_STATE.noisemeter.parse({ threshold: 'loud' })).toBeUndefined()
+    expect(WIDGET_STATE.noisemeter.parse({ threshold: 5 })).toEqual({ threshold: 1 })
+    expect(WIDGET_STATE.noisemeter.parse({ threshold: -1 })).toEqual({ threshold: 0 })
+    expect(WIDGET_STATE.noisemeter.parse({ threshold: 0.4 })).toEqual({ threshold: 0.4 })
+  })
+
   it('whiteboard rejects malformed strokes and accepts valid ones', () => {
     expect(
       WIDGET_STATE.whiteboard.parse({ strokes: [{ color: '#000', width: 0, points: [] }] }),

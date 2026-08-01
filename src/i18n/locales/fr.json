@@ -27,7 +27,21 @@
       "morningboard": "Tableau du matin",
       "stickynotes": "Notes autocollantes",
       "whiteboard": "Tableau blanc",
-      "mathtools": "Instruments de maths"
+      "mathtools": "Instruments de maths",
+      "noisemeter": "Sonomètre"
+    }
+  },
+  "noise": {
+    "start": "Démarrer le micro",
+    "stop": "Arrêter le micro",
+    "threshold": "Seuil",
+    "idle": "Prêt",
+    "denied": "Pas d'accès au micro.",
+    "note": "Local uniquement – aucun enregistrement, aucune transmission. Fiabilité variable selon l'appareil.",
+    "states": {
+      "quiet": "Calme",
+      "ok": "Correct",
+      "loud": "Trop fort"
     }
   },
   "mathtools": {

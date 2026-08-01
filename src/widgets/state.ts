@@ -94,6 +94,10 @@ export interface MathToolsPersist {
   instrument: MathInstrument
   range: number
 }
+export interface NoiseMeterPersist {
+  /** Relative loudness threshold in [0, 1]. */
+  threshold: number
+}
 
 export interface WidgetStateMap {
   timer: TimerPersist
@@ -109,6 +113,7 @@ export interface WidgetStateMap {
   stickynotes: StickyNotesPersist
   whiteboard: WhiteboardPersist
   mathtools: MathToolsPersist
+  noisemeter: NoiseMeterPersist
 }
 
 function isFiniteNumber(value: unknown): value is number {
@@ -376,6 +381,15 @@ export const WIDGET_STATE: { [K in WidgetKind]: WidgetStateSpec<WidgetStateMap[K
       }
       if (!isFiniteNumber(range)) return undefined
       return { instrument: instrument as MathInstrument, range: clampRange(range) }
+    },
+  },
+  noisemeter: {
+    default: { threshold: 0.5 },
+    parse(input) {
+      if (!isRecord(input)) return undefined
+      const { threshold } = input
+      if (!isFiniteNumber(threshold)) return undefined
+      return { threshold: Math.min(1, Math.max(0, threshold)) }
     },
   },
 }

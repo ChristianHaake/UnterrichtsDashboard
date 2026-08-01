@@ -27,7 +27,21 @@
       "morningboard": "Morning board",
       "stickynotes": "Sticky notes",
       "whiteboard": "Whiteboard",
-      "mathtools": "Math instruments"
+      "mathtools": "Math instruments",
+      "noisemeter": "Noise meter"
+    }
+  },
+  "noise": {
+    "start": "Start microphone",
+    "stop": "Stop microphone",
+    "threshold": "Threshold",
+    "idle": "Ready",
+    "denied": "No microphone access.",
+    "note": "Local only – no recording, no transmission. Reliability varies by device.",
+    "states": {
+      "quiet": "Quiet",
+      "ok": "Okay",
+      "loud": "Too loud"
     }
   },
   "mathtools": {

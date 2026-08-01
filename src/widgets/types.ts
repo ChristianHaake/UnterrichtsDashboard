@@ -12,6 +12,7 @@ export type WidgetKind =
   | 'stickynotes'
   | 'whiteboard'
   | 'mathtools'
+  | 'noisemeter'
 
 export const WIDGET_KINDS: readonly WidgetKind[] = [
   'timer',
@@ -27,6 +28,7 @@ export const WIDGET_KINDS: readonly WidgetKind[] = [
   'stickynotes',
   'whiteboard',
   'mathtools',
+  'noisemeter',
 ]
 
 export interface WidgetInstance {

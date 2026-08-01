@@ -171,6 +171,9 @@
   gap: 6px;
 }
 .palette__app {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 8px 12px;
   font: inherit;
   color: var(--text);
@@ -181,6 +184,13 @@
 }
 .palette__app:hover {
   border-color: var(--primary);
+  color: var(--primary);
+}
+.palette__app-icon {
+  display: inline-flex;
+  color: var(--text-muted);
+}
+.palette__app:hover .palette__app-icon {
   color: var(--primary);
 }
 .palette__empty {
@@ -1292,6 +1302,92 @@
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
+}
+
+/* Noise meter widget */
+.noise {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.noise__meter {
+  position: relative;
+  height: 28px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.noise__bar {
+  height: 100%;
+}
+.noise__meter--quiet .noise__bar {
+  background: var(--success);
+}
+.noise__meter--ok .noise__bar {
+  background: #d19a00;
+}
+.noise__meter--loud .noise__bar {
+  background: var(--danger);
+}
+.noise__threshold {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--text);
+}
+.noise__state {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+}
+.noise__state--quiet {
+  color: var(--success);
+}
+.noise__state--ok {
+  color: var(--warning);
+}
+.noise__state--loud {
+  color: var(--danger);
+}
+.noise__threshold-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.noise__threshold-label input {
+  flex: 1;
+}
+.noise__controls {
+  display: flex;
+  justify-content: center;
+}
+.noise__controls button {
+  padding: 8px 16px;
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.noise__start {
+  color: #fff !important;
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+.noise__error {
+  margin: 0;
+  color: var(--danger);
+}
+.noise__note {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
 }
 
 /* Text widget */

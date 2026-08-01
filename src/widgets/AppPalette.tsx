@@ -89,6 +89,9 @@ export function AppPalette({ onAdd }: AppPaletteProps) {
                       aria-label={t('widgets.add', { name: t(MANIFESTS[kind].labelKey) })}
                       onClick={() => add(kind)}
                     >
+                      <span className="palette__app-icon" aria-hidden="true">
+                        {MANIFESTS[kind].icon}
+                      </span>
                       {t(MANIFESTS[kind].labelKey)}
                     </button>
                   ))}

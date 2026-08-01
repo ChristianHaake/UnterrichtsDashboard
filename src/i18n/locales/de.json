@@ -27,7 +27,21 @@
       "morningboard": "Morning Board",
       "stickynotes": "Klebezettel",
       "whiteboard": "Whiteboard",
-      "mathtools": "Mathe-Instrumente"
+      "mathtools": "Mathe-Instrumente",
+      "noisemeter": "Lärmampel"
+    }
+  },
+  "noise": {
+    "start": "Mikrofon starten",
+    "stop": "Mikrofon stoppen",
+    "threshold": "Schwelle",
+    "idle": "Bereit",
+    "denied": "Kein Mikrofonzugriff.",
+    "note": "Nur lokal – keine Aufnahme, keine Übertragung. Zuverlässigkeit geräteabhängig.",
+    "states": {
+      "quiet": "Leise",
+      "ok": "Okay",
+      "loud": "Zu laut"
     }
   },
   "mathtools": {

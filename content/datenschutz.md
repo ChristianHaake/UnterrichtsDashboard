@@ -71,12 +71,16 @@ Namenslisten und keine Kennungen gesendet. Open-Meteo setzt nach eigenen
 Angaben keine Cookies. Wird das Widget nicht verwendet, findet keine solche
 Verbindung statt.
 
-## Mikrofon
+## Mikrofon (Lärmampel)
 
-Die aktuelle Version verwendet kein Mikrofon. Sollte künftig ein
-Lärmpegel-Messer ergänzt werden, wird das Mikrofonsignal ausschließlich lokal in
-einen relativen Pegel umgewandelt und niemals aufgezeichnet oder übertragen;
-diese Erklärung wird dann entsprechend aktualisiert.
+Das optionale Widget „Lärmampel" kann die Raumlautstärke anzeigen. Der Zugriff
+auf das Mikrofon erfolgt ausschließlich nach ausdrücklicher Erlaubnis über den
+Browser und nur, solange die Messung aktiv gestartet ist. Das Mikrofonsignal
+wird ausschließlich lokal im Gerät in einen relativen Pegel umgewandelt; es wird
+zu keinem Zeitpunkt aufgezeichnet, gespeichert oder an einen Server übertragen.
+Beim Stoppen der Messung wird der Mikrofonzugriff sofort freigegeben. Die
+Anzeige ist ein relativer Indikator, kein kalibriertes Messgerät; die
+Zuverlässigkeit ist geräteabhängig.
 
 ## Löschung
 

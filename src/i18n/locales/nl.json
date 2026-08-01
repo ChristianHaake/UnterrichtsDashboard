@@ -27,7 +27,21 @@
       "morningboard": "Ochtendbord",
       "stickynotes": "Plaknotities",
       "whiteboard": "Whiteboard",
-      "mathtools": "Wiskunde-instrumenten"
+      "mathtools": "Wiskunde-instrumenten",
+      "noisemeter": "Geluidsmeter"
+    }
+  },
+  "noise": {
+    "start": "Microfoon starten",
+    "stop": "Microfoon stoppen",
+    "threshold": "Drempel",
+    "idle": "Gereed",
+    "denied": "Geen microfoontoegang.",
+    "note": "Alleen lokaal – geen opname, geen verzending. Betrouwbaarheid verschilt per apparaat.",
+    "states": {
+      "quiet": "Stil",
+      "ok": "Oké",
+      "loud": "Te luid"
     }
   },
   "mathtools": {
