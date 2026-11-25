@@ -13,6 +13,7 @@ export function Footer() {
         <Link to="/ueber">{t('footer.about')}</Link>
         <Link to="/datenschutz">{t('footer.privacy')}</Link>
         <Link to="/impressum">{t('footer.imprint')}</Link>
+        <Link to="/unterstuetzung" className="support-link"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3" /></svg>{t('support.label')}</Link>
       </nav>
       <a
         className="github-link"
