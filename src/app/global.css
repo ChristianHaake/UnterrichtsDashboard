@@ -206,8 +206,14 @@ input {
 }
 
 .support-page {
-  max-width: 720px;
+  width: min(100%, 720px);
+  padding-inline: clamp(16px, 5vw, 32px);
   margin-inline: auto;
+}
+
+.support-page h1 {
+  font-size: clamp(1.375rem, 5vw, 2rem);
+  overflow-wrap: anywhere;
 }
 
 .support-page h1,
