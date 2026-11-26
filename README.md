@@ -99,7 +99,7 @@ custom domain `ud.haak3.de`.
 ## haak3 standard
 
 This app follows the
-[haak3 Web App Standard](https://github.com/ChristianHaake/haak3-webapp-standard).
+[haak3 Web App Standard](https://github.com/ChristianHaake/DEV-Memory/tree/main/standards/haak3-webapps). Das private Repository erfordert Zugriffsberechtigung.
 Conformance and exceptions (canvas layout, app-module architecture, multi-board,
 weather/mic CSP) are documented in
 [docs/standard-conformance.md](docs/standard-conformance.md).
