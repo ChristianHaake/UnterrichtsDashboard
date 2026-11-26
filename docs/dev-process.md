@@ -3,7 +3,7 @@
 Engineering execution plan for the UnterrichtsDashboard. Complements
 [`projectplan.md`](../projectplan.md) (product/market/spec) with the concrete
 build process. Conforms to the
-[haak3 Web App Standard](https://github.com/ChristianHaake/DEV-Memory/tree/main/standards/haak3-webapps)
+[haak3 Web App Standard](https://git.2p4.org/Christian/Agent-Memory/src/branch/main/25_Development/standards/haak3-webapps)
 (version 1.0.0-draft).
 
 ## Locked decisions
@@ -29,7 +29,7 @@ The standard mandates adopting the template rather than hand-rolling the shell.
 
 1. Copy the template into the repo root, preserving hidden files:
    ```bash
-   cp -R ../DEV-Memory/templates/webapp/app-repo/. .
+   cp -R /path/to/Agent-Memory/25_Development/templates/webapp/app-repo/. .
    ```
 2. Replace every `{{PLACEHOLDER}}` (search for `{{`): app name, live URL,
    Node/npm versions, repository link.
