@@ -5,6 +5,7 @@ import { Header } from './Header'
 import { Footer } from './Footer'
 import { Dashboard } from '../pages/Dashboard'
 import { ContentPage } from '../pages/ContentPage'
+import { SupportPage } from '../pages/SupportPage'
 
 export function App() {
   const { i18n } = useTranslation()
@@ -23,6 +24,7 @@ export function App() {
           <Route path="/datenschutz" element={<ContentPage slug="datenschutz" />} />
           <Route path="/impressum" element={<ContentPage slug="impressum" />} />
           <Route path="/ueber" element={<ContentPage slug="ueber" />} />
+          <Route path="/unterstuetzung" element={<SupportPage />} />
           <Route path="*" element={<ContentPage slug="hilfe" notFound />} />
         </Routes>
       </main>

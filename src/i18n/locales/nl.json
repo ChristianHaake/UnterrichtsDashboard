@@ -229,6 +229,17 @@
     "zoomOut": "Uitzoomen",
     "resetView": "Weergave herstellen"
   },
+  "support": {
+    "title": "UnterrichtsDashboard steunen",
+    "label": "Steunen",
+    "coffee": "Trakteer op een kop koffie",
+    "privacy": "De link opent Buy Me a Coffee in een nieuw tabblad. De aanbieder ontvangt verbindingsgegevens zodra je de link opent. Vanaf dat moment geldt zijn privacyverklaring.",
+    "feedback": "Gratis helpen",
+    "bug": "Een fout melden (Jira)",
+    "idea": "Een idee voorstellen (Jira)",
+    "email": "Feedback mailen",
+    "intro": "Gebruik je UnterrichtsDashboard op je digibord? Een vrijwillig kopje koffie helpt me de tools voor in de klas te verbeteren en op verschillende apparaten te testen. Alle functies van de app blijven gratis voor iedereen."
+  },
   "footer": {
     "legalNav": "Juridische informatie",
     "help": "Help",

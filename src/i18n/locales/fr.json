@@ -229,6 +229,17 @@
     "zoomOut": "Zoom arrière",
     "resetView": "Réinitialiser la vue"
   },
+  "support": {
+    "title": "Soutenir UnterrichtsDashboard",
+    "label": "Soutenir",
+    "coffee": "Offrir un café",
+    "privacy": "Le lien ouvre Buy Me a Coffee dans un nouvel onglet. Le prestataire reçoit des données de connexion à l’ouverture du lien. Sa politique de confidentialité s’applique alors.",
+    "feedback": "Aider gratuitement",
+    "bug": "Signaler un problème (Jira)",
+    "idea": "Proposer une idée (Jira)",
+    "email": "Envoyer un e-mail",
+    "intro": "Vous utilisez UnterrichtsDashboard sur votre tableau numérique ? Un café, si vous le souhaitez, m’aide à améliorer les outils de classe et à les tester sur différents appareils. Toutes les fonctionnalités de l’application restent gratuites pour tout le monde."
+  },
   "footer": {
     "legalNav": "Informations légales",
     "help": "Aide",
